@@ -1,0 +1,28 @@
+.footer {
+    width: 100%;
+    height: 5rem;
+    margin-top: 10rem;
+    border-top: 1px solid rgba(gray, .5);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    &__CompanyInfo {
+        list-style: none;
+        font-size: 1.2rem;
+    }
+    &__items {
+        justify-content: space-around;
+        display: flex;
+        gap: 20rem;
+    }
+    &__list {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+        &__item {
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+    }
+}

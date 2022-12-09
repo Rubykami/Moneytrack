@@ -1,0 +1,34 @@
+@import './Custom.scss';
+
+
+.navbar {
+    width: 100%;
+    background-color: $NavbarBackgroundColor;
+    &__items {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        color: $NavbarFontColor;
+        margin-left: 1rem;
+    }
+    &__logo {
+        font-size: 2.5rem;
+    }
+    &__list {
+        display: flex;
+        font-size: 1.2rem;
+        list-style: none;
+        margin-top: auto;
+        margin-bottom: auto;
+        gap: 5rem;
+        padding-right: 3rem;
+        &__link {
+            color: $NavbarFontColor;
+            padding: 1rem;
+            &:hover {
+                background-color: $NavbarListLinkItemHoverColor;
+                border-radius: 1rem 1rem 1rem 1rem;
+            }
+        }
+    }
+}

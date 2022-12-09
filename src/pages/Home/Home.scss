@@ -1,0 +1,119 @@
+@import './Custom.scss';
+
+.main {
+    /* Positiong */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &__FirstSection {
+        /* Positioning */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        margin-right: 8rem;
+        margin-top: 4rem;
+        &__FirstItem {
+            /* Positioning */
+            width: 30rem;
+            text-align: left;
+            font-size: 4rem;
+
+            /* Styling */
+            color: $DarkerGreen;
+            &__Controle {
+                color:$MediumGreen;
+                border-bottom: 2px solid $LightGreen;
+            }
+        }
+        &__SecondItem {
+            /*Positioning */
+            width: 35rem;
+            font-size: 1.1rem;
+            margin-left: 6rem;
+
+            /* Styling */
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        &__SignupBtn {
+            /* Positioning */
+            align-items: center;
+            display: flex;
+            gap: 1rem;
+            justify-content:space-evenly;
+            margin-right: 8rem;
+            
+            /* Styling */
+            background-color: $LightGreen;
+            border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+            box-shadow: 0 0.5rem 1.3rem $LightGreen;
+            border: 0;
+            width: 21rem;
+            height: 3.5rem;
+            color: rgba($SignupBtnFontColor, .9);
+            font-size: 1.6rem;
+            cursor: pointer;
+
+            /* Transition */
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+
+            &:hover {
+                /* Styling */
+                background-color: $MediumGreen;
+            }
+            &__ArrowSection {
+                /* Styling */
+                background-color: $MediumGreen;
+                border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+                width: 3rem;
+                height: 2.5rem;
+            }
+            &__Arrow {
+            /*Positioning */
+                margin-top: 6px;
+                font-size: 1.8rem;
+            }
+        }
+        &__Bottom {
+            width: 50rem;
+            &__Items {
+                display: flex;
+                gap: 3rem;
+                margin-left: 10.5rem;
+            }
+            &__Item {
+                display: flex;
+                font-size: 1.2rem;
+                gap: 1rem;
+                position: relative;
+                &__LockIcon {
+                    color: $DarkerGreen;
+                    background-color: rgba($LighterGreen, .3);
+                    font-size: 4rem;
+                    padding: 0.5rem;
+                    border-radius: 1rem 1rem 1rem 1rem;
+                }
+                &__ComputerPhoneIcon {
+                    color: $DarkerGreen;
+                    background-color: rgba($LighterGreen, .3);
+                    font-size: 4rem;
+                    padding: 0.5rem;
+                    border-radius: 1rem 1rem 1rem 1rem;
+                }
+                &__Text {
+                    margin: auto;
+
+                }
+            }
+        }
+    }
+    &__SecondSection {
+        &__image {
+        /*Positioning */
+            margin-top: 4rem;
+            margin-right: 3rem;
+        }
+    }
+}
+
