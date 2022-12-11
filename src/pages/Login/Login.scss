@@ -1,0 +1,110 @@
+@import './Custom.scss';
+
+.loginform {
+    height: 30rem;
+    width: 31vw;
+    margin: auto;
+    font-size: 1.1rem;
+    &__Fieldset {
+        font-family: 'Montserrat', sans-serif;
+        height:30rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 4rem;
+        padding-top: 9rem;
+        padding-bottom: 8rem;
+        padding-right: 2rem;
+        &__span {
+            position: absolute;
+            margin-top: 22rem;
+        }
+        :nth-child(2) {
+            :nth-child(1) {
+                width: 3.5rem;
+                margin: left;
+                margin-left: 3rem;
+            }
+            :nth-child(2) {
+                padding-right: 3rem;
+                margin-left: 3rem;
+            }
+        }
+        :nth-child(3) {
+            margin: auto;
+            margin-right: 6rem;
+            margin-left: 9rem;
+            width: 16rem;
+            margin-top: -1rem;
+        }
+        &__Title {
+            text-align: center;
+            margin-bottom: 22rem;
+            position: absolute;
+            margin-left: 3rem;
+        }
+        &__Button {
+            font-family: 'Montserrat', sans-serif;
+            width: 14rem;
+            height: 3rem;
+            position: relative;
+            font-size: 1.6rem;
+            margin-top: 1rem;
+            margin-left: 3rem;
+            text-align: center;
+            background-color: $LightGreen;
+            color: rgba(white, .9);
+            border: 1px solid $LightGreen;
+            border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+            transition-timing-function: ease-in-out;
+            transition-duration: 0.3s;
+            &:hover {
+                background-color: $MediumGreen;
+            }
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        &__link {
+            position: absolute;
+            width: 30rem;
+            margin-top: 22rem;
+            margin-left: 10rem;
+            font-size: 1rem;
+            color: black;
+            &:hover {
+                cursor: pointer;
+            }
+            &__cadastro {
+                color: green;
+                border-bottom: 1px solid green;
+            }
+            &__forgotpassword {
+                position: absolute;
+                margin-top: 7rem;
+                margin-left: 2.5rem;
+                font-size: 1rem;
+                color: green;
+            }
+        }
+    }
+    &__remembermecheckbox {
+        display: flex;
+        gap: 1rem;
+        margin: auto;
+        margin-top: 17.5rem;
+        position:absolute;
+        margin-left: 2rem;
+        &__input {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        &__h2 {
+            font-size: 1rem;
+            text-align: center;
+        }
+    }
+}

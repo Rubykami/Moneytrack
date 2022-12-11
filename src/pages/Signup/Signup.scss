@@ -1,0 +1,92 @@
+@import './Custom.scss';
+
+
+.form {
+    height: 52rem;
+    width: 30vw;
+    margin: auto;
+    font-size: 1.1rem;
+    padding-bottom: 3rem;
+    &__Fieldset {
+        font-family: 'Montserrat', sans-serif;
+        margin: auto;
+        height: 49rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap: 2.5rem;
+        margin-top: 4rem;
+        padding: 7rem;
+        padding-bottom: 9rem;
+        :nth-child(5) {
+            label {
+                margin: left;
+            }
+        }
+        &__OpenedEye {
+            position: absolute;
+            margin-top: 23rem;
+            margin-left: 17rem;
+            font-size: 1.3rem;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        &__OpenedConfEye {
+            position: absolute;
+            margin-top: 9.5rem;
+            margin-left: 17rem;
+            font-size: 1.3rem;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        &__ClosedEye {
+            position: absolute;
+            margin-top: 23rem;
+            margin-left: 17rem;
+            font-size: 1.3rem;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        &__ClosedConfEye {
+            position: absolute;
+            margin-top: 9.5rem;
+            margin-left: 17rem;
+            font-size: 1.3rem;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        &__Title {
+            text-align: center;
+            font-size: 2rem;
+        }
+        &__Button {
+            font-family: 'Montserrat', sans-serif;
+            width: 25rem;
+            margin-top: 0.5rem;
+            height: 10rem;
+            position: relative;
+            cursor: pointer;
+            font-size: 2rem;
+            background-color: $LightGreen;
+            color: rgba(white, .9);
+            border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+            box-shadow: 0 0.5rem 1.3rem #2d6a4f;
+            border: 1px solid #2d6a4f;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+            &:hover {
+                background-color: #2d6a4f;
+                border: 1px solid $LightGreen;
+            }
+        }
+        &__link {
+            margin-left: 0.5rem;
+            color: green;
+        }
+    }
+}

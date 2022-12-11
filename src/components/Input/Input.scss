@@ -1,0 +1,19 @@
+.InputBlock {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    &__Label {
+        width: 10rem;
+        margin: left;
+    }
+    &__Input {
+        font-family: 'Montserrat', sans-serif;
+        padding-right: 15rem;
+        height: 1.5rem;
+        font-size: 1rem;
+        padding: 1.1rem;
+        &::placeholder {
+            font-weight: bold;
+        }
+    }
+}

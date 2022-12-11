@@ -2,8 +2,9 @@
 
 
 .navbar {
-    width: 100%;
+    width: 100vw;
     background-color: $NavbarBackgroundColor;
+    font-family: 'Montserrat';
     &__items {
         display: flex;
         justify-content: space-between;
@@ -13,6 +14,7 @@
     }
     &__logo {
         font-size: 2.5rem;
+        font-family: 'Cinzel', serif;
     }
     &__list {
         display: flex;

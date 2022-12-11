@@ -1,4 +1,5 @@
 import './Header.scss'
+import { Link} from 'react-router-dom'
 
 
 
@@ -9,23 +10,14 @@ const Header = () => {
                 <div className='navbar__logo'>
                     Organizzeta
                 </div>
-                <ul className='navbar__list'>
-                    <li className='navbar__list__item'>
-                        <a className='navbar__list__link' href='/'>Home</a>
-                    </li>
-                    <li className='navbar__list__item'>
-                        <a className='navbar__list__link' href='/Profile'>Perfil</a>
-                    </li>
-                    <li className='navbar__list__item'>
-                        <a className='navbar__list__link' href='/Deposit'>Depositar</a>
-                    </li>
-                    <li className='navbar__list__item'>
-                        <a className='navbar__list__link' href='/Withdraw'>Saque</a>
-                    </li>
-                    <li className='navbar__list__item'>
-                        <a className='navbar__list__link' href='/Transfer'>Transferência</a>
-                    </li>
-                </ul>
+                    <ul className='navbar__list'>
+                        <li className='navbar__list__item'>
+                            <Link reloadDocument to="/" className='navbar__list__link'>Home</Link>
+                        </li>
+                        <li className='navbar__list__item'>
+                            <Link reloadDocument to='/login' className='navbar__list__link'>Login</Link>
+                        </li>
+                    </ul>
             </div>
         </nav>
     )
