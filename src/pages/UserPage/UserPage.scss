@@ -1,0 +1,293 @@
+.mainsection {
+    display: flex;
+    &__firstsection {
+        width: 16rem;
+        box-shadow: 9px 0 15px -2px gray;
+        height: 50rem;
+    }
+    &__personaldatasection {
+        &__div {
+            display: flex;
+            gap: 1rem;
+            height: 4rem;
+            background-color: #40916c;;
+            color: rgba(white, 0.9);
+            align-items: center;
+            &__title {
+                padding-left: 0.5rem;
+            }
+            &__notification {
+                margin-left: 2.5rem;
+                background-color: #2d6a4f;
+                padding: 0.2rem;
+                color: rgba(white, 0.9);
+                font-size: 1.3rem;
+                padding-top: 0.3rem;
+                border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+                transition-timing-function: ease-in-out;
+                &:hover {
+                    cursor: pointer;
+                }
+                &:active {
+                    background-color: #40916c;
+                }
+            }
+        }
+    
+    }
+    &__balancesection {
+        &__div {
+            display: flex;
+            gap: 3.2rem;
+            height: 5rem;
+            border-bottom: 1px solid darkgray;
+            &__title {
+                margin-left: 0.6rem;
+                font-family: 'Montserrat';
+                color: gray;
+                font-size: 1rem;
+            }
+            &__visiblebalance {
+                font-family: 'Montserrat';
+                margin-left: 0.6rem;
+                font-size: 1.3rem;
+            }
+            &__hiddenbalance {
+                font-family: 'Montserrat';
+                margin-left: 0.6rem;
+                font-size: 1.3rem;
+            }
+            &__openedeye {
+                margin-top: 2.3rem;
+                font-size: 1.5rem;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            &__closedeye {
+                margin-top: 2.3rem;
+                font-size: 1.5rem;
+                position: absolute;
+                margin-left: 11rem;
+                &:hover {
+                    cursor: pointer;
+            }
+        }
+            &__balancetitle {
+                margin-top: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+        }
+    }
+    &__bankdatasection {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid darkgray;
+        padding-bottom: 1rem;
+        &__manageaccountbtn {
+            width: 10.5rem;
+            height: 2rem;
+            margin-top: 3rem;
+            margin-left: 0.7rem;
+            background-color: #40916c;
+            color: rgba(white, .9);
+            border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+            border-color: #40916c;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+            &:hover {
+                cursor: pointer;
+                background-color: #2d6a4f;
+            }
+        }
+        &__title {
+            margin-left: 0.6rem;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-top: 0.6rem;
+        }
+        &__accountinfo {
+            &__div {
+                padding-left: 0.6rem;
+                margin-top: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                &__bankname {
+                    font-size: 1.5rem;
+                    font-family: 'Lato';
+                }
+                &__bankaccountinfo {
+                    font-size: 1.1rem;
+                    font-family: 'Montserrat';
+                    color: rgba(gray, 0.9);
+                }
+                &__balance {
+                    &__div {
+                        &__balanceinfo {
+                            font-size: 1.3rem;
+                            font-family: "Montserrat";
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &__useractions {
+        display: flex;
+        flex-direction: column;
+        width: 10.5rem;
+        gap: 3rem;
+        margin-top: 3rem;
+        margin-left: 0.7rem;
+        &__transferbtn {
+            height: 2rem;
+            background-color: #40916c;
+            color: rgba(white, .9);
+            border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+            border-color: #40916c;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+            &:hover {
+                cursor: pointer;
+                background-color: #2d6a4f;
+            }
+        }
+        &__depositbtn {
+            height: 2rem;
+            background-color: #40916c;
+            color: rgba(white, .9);
+            border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+            border-color: #40916c;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+            &:hover {
+                cursor: pointer;
+                background-color: #2d6a4f;
+            }
+        }
+    }
+    &__bottomdiv {
+        height: 4.1rem;
+        background-color: #40916c;
+        margin-top: 4rem;
+    }
+
+
+    &__secondsection {
+        height: 50rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 2rem;
+        &__title {
+            font-size: 3rem;
+            margin-top: 1rem;
+            font-family: 'Montserrat';
+
+        }
+        &__companyinfo {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            &__title {
+                font-family: 'Roboto';
+                font-size: 2rem;
+                border-bottom: 2px solid black;
+                width: 12rem;
+
+            }
+            &__description {
+                font-size: 1.2rem;
+                font-family: 'Montserrat';
+                text-align: left;
+                width: 50rem;
+
+            }
+            &__firstaddinfo {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                &__div {
+                    display: flex;
+                    gap: 2rem;
+                    &__checkedicon {
+                        font-size: 1.5rem;
+                        padding: 0.7rem 0.5rem 0.5rem;
+                        margin-bottom: 2rem;
+                        color: darkgray;
+                        box-shadow: 2px -2px 1px 1px gray;
+                        border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+                    }
+                    &__description {
+                        width: 27rem;
+                        text-align: left;
+                        font-size: 1.5rem;
+                        margin-right: -5rem
+        
+                    }
+                    &__downloadinfo {
+        
+                    }
+                }
+            }
+            &__secondaddinfo {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                margin-top: 1rem;
+                &__div {
+                    display: flex;
+                    gap: 1rem;
+                    &__checkedicon {
+                        font-size: 1.5rem;
+                        padding: 0.7rem 0.5rem 0.5rem;
+                        margin-bottom: 2rem;
+                        color: darkgray;
+                        box-shadow: 2px -2px 1px 1px gray;
+                        border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+        
+                    }
+                    &__description {
+        
+                    }
+                    &__downloadinfo {
+                        width: 15rem;
+                        text-align: left;
+                        font-size: 1.3rem;
+        
+                    }
+                }
+            }
+        }
+        &__instructions {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            &__title {
+                font-size: 1.9rem;
+                font-family: 'Roboto';
+                border-bottom: 2px solid black;
+                width: 17rem;
+            }
+            &__description {
+                font-size: 1.4rem;
+                font-family: 'Lato';
+                width: 47rem;
+                &__list {
+                    &__item {
+                        list-style: none;
+                    }
+                }
+            }
+        }
+        &__footer {
+            font-size: 1.2rem;
+            font-family: 'Montserrat';
+            margin-top: 1rem;
+        }
+    }
+}
