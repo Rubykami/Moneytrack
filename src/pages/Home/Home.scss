@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    &__FirstSection {
+    &__firstsection {
         /* Positioning */
         display: flex;
         flex-direction: column;
@@ -13,7 +13,7 @@
         gap: 2rem;
         margin-right: 8rem;
         margin-top: 4rem;
-        &__FirstItem {
+        &__firstitem {
             /* Positioning */
             width: 30rem;
             text-align: left;
@@ -21,12 +21,12 @@
 
             /* Styling */
             color: $DarkerGreen;
-            &__Controle {
+            &__controle {
                 color:$MediumGreen;
                 border-bottom: 2px solid $LightGreen;
             }
         }
-        &__SecondItem {
+        &__seconditem {
             /*Positioning */
             width: 35rem;
             font-size: 1.1rem;
@@ -35,7 +35,7 @@
             /* Styling */
             font-family:Arial, Helvetica, sans-serif;
         }
-        &__SignupBtn {
+        &__signupbtn {
             /* Positioning */
             align-items: center;
             display: flex;
@@ -62,53 +62,53 @@
                 /* Styling */
                 background-color: $MediumGreen;
             }
-            &__ArrowSection {
+            &__arrowsection {
                 /* Styling */
                 background-color: $MediumGreen;
                 border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
                 width: 3rem;
                 height: 2.5rem;
             }
-            &__Arrow {
+            &__arrow {
             /*Positioning */
                 margin-top: 6px;
                 font-size: 1.8rem;
             }
         }
-        &__Bottom {
+        &__bottom {
             width: 50rem;
-            &__Items {
+            &__items {
                 display: flex;
                 gap: 3rem;
                 margin-left: 10.5rem;
             }
-            &__Item {
+            &__item {
                 display: flex;
                 font-size: 1.2rem;
                 gap: 1rem;
                 position: relative;
-                &__LockIcon {
+                &__lockicon {
                     color: $DarkerGreen;
-                    background-color: rgba($LighterGreen, .3);
+                    background-color: rgba($LightGreen, .3);
                     font-size: 4rem;
                     padding: 0.5rem;
                     border-radius: 1rem 1rem 1rem 1rem;
                 }
-                &__ComputerPhoneIcon {
+                &__computerphoneicon {
                     color: $DarkerGreen;
-                    background-color: rgba($LighterGreen, .3);
+                    background-color: rgba($LightGreen, .3);
                     font-size: 4rem;
                     padding: 0.5rem;
                     border-radius: 1rem 1rem 1rem 1rem;
                 }
-                &__Text {
+                &__text {
                     margin: auto;
 
                 }
             }
         }
     }
-    &__SecondSection {
+    &__secondsection {
         &__image {
         /*Positioning */
             margin-top: 4rem;

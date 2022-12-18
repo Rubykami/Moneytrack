@@ -1,0 +1,71 @@
+.mainsection {
+    &__secondsectionmngacc {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        &__firstbank {
+            justify-content: space-around;
+            display: flex;
+            flex-direction: column;
+            width: 30rem;
+            height: 55rem;
+            padding-right: 3rem;
+            padding-bottom: 0.6rem;
+            padding-left: 3rem;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            margin-bottom: 6rem;
+            margin-top: 6rem;
+            gap: 2rem;
+            
+            &__title {
+                margin-left: 10rem;
+                margin-top: 0.5rem;
+            }
+            &__subtitle {
+                margin-left: 7rem;
+                margin-top: -1rem;
+            }
+            &__form {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+        &__secondbank {
+            justify-content: space-around;
+            display: flex;
+            flex-direction: column;
+            width: 30rem;
+            height: 55rem;
+            padding-right: 3rem;
+            border: 1px solid black;
+            margin-bottom: 6rem;
+            margin-top: 6rem;
+            &__title {
+                margin-left: 12rem;
+            }
+            &__subtitle {
+                margin-left: 10rem;
+                position: relative;
+                margin-bottom: 1rem;
+            }
+            &__form {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                padding-left: 3rem;
+            }
+        }
+        &__btn {
+            margin-left: 6rem;
+            width: 10rem;
+            height: 2rem;
+            border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+            &:hover {
+                cursor: pointer;
+            }    
+        }
+    }
+}

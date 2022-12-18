@@ -5,7 +5,7 @@
     width: 31vw;
     margin: auto;
     font-size: 1.1rem;
-    &__Fieldset {
+    &__fieldset {
         font-family: 'Montserrat', sans-serif;
         height:30rem;
         display: flex;
@@ -39,13 +39,13 @@
             width: 16rem;
             margin-top: -1rem;
         }
-        &__Title {
+        &__title {
             text-align: center;
             margin-bottom: 22rem;
             position: absolute;
             margin-left: 3rem;
         }
-        &__Button {
+        &__button {
             font-family: 'Montserrat', sans-serif;
             width: 14rem;
             height: 3rem;
