@@ -3,6 +3,8 @@ import {InputType} from '../../types/Input';
 import React, { forwardRef} from 'react';
 
 const Input: React.ForwardRefRenderFunction< HTMLInputElement, InputType> = ({name='', type, OnChange, value, text, ...rest}, ref) => {
+
+    
     return (
         <div className='InputBlock'>
             <label htmlFor={name} className='InputBlock__Label'>
@@ -12,8 +14,8 @@ const Input: React.ForwardRefRenderFunction< HTMLInputElement, InputType> = ({na
             className='InputBlock__Input'
             type={type}
             name={name}
-            onChange={OnChange}
             value={value}
+            onChange={OnChange}
             ref={ref}
             {...rest}
             />

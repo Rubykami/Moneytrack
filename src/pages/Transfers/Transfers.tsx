@@ -11,6 +11,7 @@ const Transfers = () => {
 
     const [FormValues, setFormValues] = useState<TransfersType>({
         transfersvalue: '',
+        accounttype: ''
     })
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -18,8 +19,13 @@ const Transfers = () => {
         setFormValues({ ...FormValues, [name]: value })
     }
 
+    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        const { name, value } = e.target
+        setFormValues({ ...FormValues, [name]: value })
+    }
+
     const FormSubmit = (e: FormEvent<HTMLFormElement>) => {
-        console.log(e)
+        e.preventDefault()
     }
 
 
@@ -34,7 +40,7 @@ const Transfers = () => {
                 <form onSubmit={FormSubmit} className="mainsection__transferssection__form">
                     <section className="mainsection__transferssection__form__section">
                         <Input
-                            name="transferbalancevalue"
+                            name="transfersvalue"
                             type="number"
                             OnChange={handleInputChange}
                             placeholder="Insira a quantidade a ser transferida"
@@ -43,6 +49,8 @@ const Transfers = () => {
                         />
                         <div className="mainsection__transferssection__form__selectdiv">
                             <Select
+                            onChange={handleSelectChange}
+                            value={FormValues.accounttype}
                                 name="transferlocation"
                                 selectinfo="Transferir de:"
                                 optionA="Carteira"
@@ -50,6 +58,8 @@ const Transfers = () => {
                                 optionC="Banco B"
                             />
                             <Select
+                            onChange={handleSelectChange}
+                            value={FormValues.accounttype}
                                 name="transferdestination"
                                 selectinfo="Transferir para: "
                                 optionA="Carteira"

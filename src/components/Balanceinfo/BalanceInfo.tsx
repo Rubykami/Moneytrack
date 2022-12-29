@@ -1,9 +1,11 @@
 import './BalanceInfo.scss'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
-import { useState, useRef, useMemo} from 'react'
+import { useState, useRef, useMemo, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
+import { BsFillPlusCircleFill } from 'react-icons/bs'
+import axios from 'axios'
+import BankAccount from '../BankAccount/BankAccount'
 
 const BalanceInfo = () => {
     const balanceSection = useRef<HTMLHeadingElement>(null)
@@ -15,9 +17,10 @@ const BalanceInfo = () => {
     const HIDDEN_BALANCE = 'hiddenbalance'
     const VISIBLE_BALANCE = 'visiblebalance'
     const HIDDEN_NUMBER = '**********'
+    const API_ACCOUNT_URL = 'http://localhost:3001/api/v1/account'
 
     const [visible, setVisibility] = useState<Boolean>(false)
-   
+
     const eyeIcon = useMemo<JSX.Element>(() => {
         return visible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />
     }, [visible])
@@ -28,12 +31,27 @@ const BalanceInfo = () => {
         return visible ? OPENED_EYE_CLASS : CLOSED_EYE_CLASS
     }, [visible])
     const balance = useMemo<String>(() => {
-        return visible ? '9000' : HIDDEN_NUMBER
+        return visible ? '0' : HIDDEN_NUMBER
     }, [visible])
+    const ALL_ACCOUNTS = useMemo<any>(() => {
+        return []
+    }, [])
 
     const toggleBalanceVisiblity = () => {
         setVisibility(!visible)
     }
+
+    const deleteBanks = () => {
+        axios.delete(API_ACCOUNT_URL + '/1')
+        axios.delete(API_ACCOUNT_URL + '/2')
+        alert('Todos os bancos foram deletados, configure-os novamente.')
+    }
+
+    useEffect(() => {
+        axios.get(API_ACCOUNT_URL).then((response) => {
+            ALL_ACCOUNTS.push(response)
+        })
+    }, [ALL_ACCOUNTS])
 
     return (
         <>
@@ -72,32 +90,42 @@ const BalanceInfo = () => {
                         <h3 className="mainsection__bankdatasection__title">
                             Minhas contas
                         </h3>
-                        <div className="mainsection__bankdatasection__accountinfo__div">
-                            <h1 className="mainsection__bankdatasection__accountinfo__div__bankname">
-                                Nubank
-                            </h1>
-                            <h2 className="mainsection__bankdatasection__accountinfo__div__bankaccountinfo">
-                                Conta Corrente
-                            </h2>
-                            <div className="mainsection__bankdatasection accountinfo__div__balance__div">
-                                <h1 className="mainsection__bankdatasection__accountinfo__div__balance__div__balanceinfo">
-                                    R$ {balance}
-                                </h1>
-                            </div>
-                        </div>
-                        <div className="mainsection__bankdatasection__accountinfo__div">
-                            <h1 className="mainsection__bankdatasection__accountinfo__div__bankname">
-                                Banco Inter
-                            </h1>
-                            <h2 className="mainsection__bankdatasection__accountinfo__div__bankaccountinfo">
-                                Conta Corrente
-                            </h2>
-                            <div className="mainsection__bankdatasection__accountinfo__div__balance__div">
-                                <h1 className="mainsection__bankdatasection__accountinfo__div__balance__div__balanceinfo">
-                                    R$ {balance}
-                                </h1>
-                            </div>
-                        </div>
+                        {ALL_ACCOUNTS.length !== 0 ? (
+                            <>
+                                {ALL_ACCOUNTS.length === 1 ? (
+                                    <BankAccount
+                                        bankName={ALL_ACCOUNTS[0].bankname}
+                                        accountType={
+                                            ALL_ACCOUNTS[0].accounttype
+                                        }
+                                        balance={ALL_ACCOUNTS[0].balance}
+                                    />
+                                ) : (
+                                    <>
+                                        <BankAccount
+                                            bankName={ALL_ACCOUNTS[0].bankname}
+                                            accountType={
+                                                ALL_ACCOUNTS[0].accounttype
+                                            }
+                                            balance={ALL_ACCOUNTS[0].balance}
+                                        />
+                                        <BankAccount
+                                            bankName={ALL_ACCOUNTS[1].bankname}
+                                            accountType={
+                                                ALL_ACCOUNTS[1].accounttype
+                                            }
+                                            balance={ALL_ACCOUNTS[1].balance}
+                                        />
+                                    </>
+                                )}
+                            </>
+                        ) : (
+                            <Link
+                                to="/profile/manageaccount"
+                            >
+                                <BsFillPlusCircleFill className="mainsection__bankdatasection__plus"/>
+                            </Link>
+                        )}
                     </section>
                     <Link to="/profile/manageaccount">
                         <button className="mainsection__bankdatasection__manageaccountbtn">
@@ -115,6 +143,12 @@ const BalanceInfo = () => {
                                 Fazer um depósito
                             </button>
                         </Link>
+                        <button
+                            onClick={deleteBanks}
+                            className="mainsection__useractions__depositbtn"
+                        >
+                            Deletar todos os bancos
+                        </button>
                     </section>
                 </section>
                 <div className="mainsection__bottomdiv"></div>

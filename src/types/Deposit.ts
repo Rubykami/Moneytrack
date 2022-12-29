@@ -1,3 +1,4 @@
 export type DepositType = {
-    depositbalancevalue: string
+    depositbalancevalue: string,
+    accounttype: string
 }

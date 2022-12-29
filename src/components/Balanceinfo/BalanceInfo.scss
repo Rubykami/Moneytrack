@@ -1,5 +1,6 @@
 .mainsection {
     display: flex;
+    height: 62.9rem;
     &__firstsection {
         width: 16rem;
         box-shadow: 9px 5px 15px -2px gray;
@@ -88,6 +89,16 @@
         flex-direction: column;
         border-bottom: 1px solid darkgray;
         padding-bottom: 1rem;
+        &__plus {
+            margin-top: 2rem;
+            font-size: 3rem;
+            margin-left: 5rem;
+            color: #40916c;
+            &:hover {
+                cursor: pointer;
+                color: #2d6a4f;
+            }
+        }
         &__manageaccountbtn {
             width: 10.5rem;
             height: 2rem;
@@ -173,7 +184,7 @@
         }
     }
     &__bottomdiv {
-        height: 25rem;
+        height: 21.5rem;
         background-color: #40916c;
         margin-top: 4rem;
     }

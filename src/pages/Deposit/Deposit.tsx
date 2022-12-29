@@ -13,8 +13,14 @@ const Deposit = () => {
         setFormValues({ ...FormValues, [name]: value })
     }
 
+    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        const { name, value } = e.target
+        setFormValues({ ...FormValues, [name]: value })
+    }
+
     const [FormValues, setFormValues] = useState<DepositType>({
         depositbalancevalue: '',
+        accounttype: ''
     })
 
     const FormSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -46,6 +52,8 @@ const Deposit = () => {
                         />
                         <div className="mainsection__secondsectiondeposit__form__selectdiv">
                             <Select
+                            onChange={handleSelectChange}
+                            value={FormValues.accounttype}
                                 name="depositlocation"
                                 selectinfo="Depositar através de:"
                                 optionA="CPF"

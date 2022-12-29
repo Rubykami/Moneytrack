@@ -1,5 +1,4 @@
-@import './Custom.scss';
-
+@import "./Custom.scss";
 
 .form {
     height: 52rem;
@@ -8,7 +7,7 @@
     font-size: 1.1rem;
     padding-bottom: 3rem;
     &__fieldset {
-        font-family: 'Montserrat', sans-serif;
+        font-family: "Montserrat", sans-serif;
         margin: auto;
         height: 49rem;
         display: flex;
@@ -19,6 +18,33 @@
         margin-top: 4rem;
         padding: 7rem;
         padding-bottom: 9rem;
+        &__errors__name {
+            position: absolute;
+            margin-bottom: 13rem;
+            font-size: 1rem;
+            color: red;
+            font-weight: bold;
+        }
+        &__errors__email {
+            position: absolute;
+            font-size: 1rem;
+            color: red;
+            font-weight: bold;
+        }
+        &__errors__password {
+            position: absolute;
+            font-size: 1rem;
+            margin-top: 14rem;
+            color: red;
+            font-weight: bold;
+        }
+        &__errors__confirmationPassword {
+            position: absolute;
+            font-size: 1rem;
+            margin-top: 28rem;
+            color: red;
+            font-weight: bold;
+        }
         :nth-child(5) {
             label {
                 margin: left;
@@ -65,7 +91,7 @@
             font-size: 2rem;
         }
         &__button {
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             width: 25rem;
             margin-top: 0.5rem;
             height: 10rem;
@@ -73,7 +99,7 @@
             cursor: pointer;
             font-size: 2rem;
             background-color: $LightGreen;
-            color: rgba(white, .9);
+            color: rgba(white, 0.9);
             border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
             box-shadow: 0 0.5rem 1.3rem #2d6a4f;
             border: 1px solid #2d6a4f;

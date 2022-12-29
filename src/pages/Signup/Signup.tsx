@@ -1,12 +1,22 @@
 import './Signup.scss'
-import { ChangeEvent, FormEvent, useState, useRef, useEffect } from 'react'
+import { ChangeEvent, FormEvent, useState, useRef, useEffect} from 'react'
 import Input from '../../components/Input/Input'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { SignupType } from '../../types/Signup'
+import { SignupValidateTypes } from '../../types/SignupValidate'
+ 
+interface SignupErrors {
+    name?: string,
+    email?: string,
+    password?: string,
+    confirmationPassword?: string
+}
+
 
 const Signup = () => {
+
 
     const TEXT = 'text'
     const PASSWORD = 'password'
@@ -16,27 +26,61 @@ const Signup = () => {
     const OPENED_LOWER_EYE_CLASS = 'openedLowerEye'
     const CLOSED_LOWER_EYE_CLASS = 'closedLowerEye'
 
-    const [upperEyeClass, setUpperEyeClass] = useState<String>(
+    const [upperEyeClass, setUpperEyeClass] = useState<string>(
         CLOSED_UPPER_EYE_CLASS
     )
-    const [lowerEyeClass, setLowerEyeClass] = useState<String>(
+    const [lowerEyeClass, setLowerEyeClass] = useState<string>(
         CLOSED_LOWER_EYE_CLASS
     )
-    const [upperEye, setUpperEye] = useState<JSX.Element>(<FaEyeSlash />)
-    const [lowerEye, setLowerEye] = useState<JSX.Element>(<FaEyeSlash />)
-    const [formValues, setFormValues] = useState<SignupType>({
+
+    const formInitialValues = {
         name: '',
         email: '',
         password: '',
         confirmationPassword: '',
-    })
-    
+    }
+
+    const [upperEye, setUpperEye] = useState<JSX.Element>(<FaEyeSlash />)
+    const [lowerEye, setLowerEye] = useState<JSX.Element>(<FaEyeSlash />)
+    const [formValues, setFormValues] = useState<SignupType>(formInitialValues)
+    const [formErrors, setFormErrors] = useState<SignupErrors>({})
+    const [isSubmit, setIsSubmit] = useState<boolean>(false);
+
+    const validate = (values: SignupValidateTypes): SignupValidateTypes => {
+        const errors: SignupValidateTypes = {};
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if (!values.name) {
+            errors.name = 'Inserir o nome é obrigatório!';
+        }
+        if (!values.email) {
+            errors.email = 'Inserir o email é obrigatório!';
+        } else if (!regex.test(values.email)) {
+            errors.email = 'Este não é um email válido!'
+        }
+        if (!values.password) {
+            errors.password = 'Inserir uma senha é obrigatório!';
+        } else if (values.password.length < 8) {
+            errors.password = 'A senha deve ter pelo menos 8 carácteres'
+        }
+        if (!values.confirmationPassword) {
+            errors.confirmationPassword = 'Inserir a confirmação de senha é obrigatório!';
+        }  else if (values.confirmationPassword.length < 8) {
+            errors.confirmationPassword = 'A confirmação de senha deve ter pelo menos 8 carácteres'
+        }
+        if (values.password !== values.confirmationPassword) {
+            errors.password = 'As senhas devem ser iguais'
+        }
+        return errors;
+    }
+
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setFormValues({ ...formValues, [name]: value })
     }
-    const FormSubmit = (e:  FormEvent<HTMLFormElement>) => {
-        console.log(e)
+    const handleSubmit = (e:  FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setFormErrors(validate(formValues));
+        setIsSubmit(true);
     }
 
     const passwordInputRef = useRef<HTMLInputElement>(null)
@@ -68,6 +112,7 @@ const Signup = () => {
 
 
     useEffect(() => {
+
         if (
             confirmationPasswordInputRef.current &&
             passwordInputRef.current != null
@@ -96,7 +141,7 @@ const Signup = () => {
     }, [upperEyeClass, lowerEyeClass])
 
     return (
-        <form className="form" onSubmit={FormSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
             <fieldset className="form__fieldset">
                 <h1 className="form__fieldset__title">
                     Crie sua conta e comece a controlar sua grana agora mesmo
@@ -109,6 +154,7 @@ const Signup = () => {
                     value={formValues.name}
                     OnChange={handleInputChange}
                 />
+                <p className='form__fieldset__errors__name'>{formErrors.name}</p>
                 <Input
                     name="email"
                     placeholder="Insira seu email"
@@ -117,6 +163,7 @@ const Signup = () => {
                     value={formValues.email}
                     OnChange={handleInputChange}
                 />
+                <p className='form__fieldset__errors__email'>{formErrors.email}</p>
                 <Input
                     name="password"
                     ref={passwordInputRef}
@@ -126,6 +173,7 @@ const Signup = () => {
                     value={formValues.password}
                     OnChange={handleInputChange}
                 />
+                <p className='form__fieldset__errors__password'>{formErrors.password}</p>
                 <Input
                     name="confirmationPassword"
                     ref={confirmationPasswordInputRef}
@@ -135,6 +183,7 @@ const Signup = () => {
                     value={formValues.confirmationPassword}
                     OnChange={handleInputChange}
                 />
+                <p className='form__fieldset__errors__confirmationPassword'>{formErrors.confirmationPassword}</p>
                 <button className="form__fieldset__button">
                     Começar a usar
                 </button>

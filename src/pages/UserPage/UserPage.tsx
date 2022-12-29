@@ -71,9 +71,10 @@ const UserPage = () => {
                                     <b> Fazer um depósito</b>.
                                 </li>
                                 <li className="mainsection__secondsection__instructions__description__list__item">
-                                    <b>4. </b> Para gerenciar as suas contas de
-                                    banco(<b>como mudar os dados cadastrados</b>
-                                    ), clique em <b>Gerenciar contas</b>.
+                                    <b>4. </b> Para cadastrar novas contas de
+                                    banco
+                                    , clique em <b>Gerenciar contas</b>.
+                                    Para modificar suas contas de banco, é necessário deletar e cadastra-lás novamente.
                                 </li>
                             </ul>
                         </p>
