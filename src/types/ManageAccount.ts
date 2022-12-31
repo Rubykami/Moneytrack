@@ -1,9 +1,9 @@
 export type ManageAccountTypes = {
-    bankname: string,
-    bankownername: string,
-    bankCPFvalue: string,
-    bankaccountnumber: string,
-    banksecuritynumber: string,
-    bankbalancevalue: string,
+    name: string,
+    ownername: string,
+    ownercpfnumber: string,
+    accountnumber: string,
+    securitycode: string,
+    balancevalue: string,
     accounttype: string
 }
