@@ -29,7 +29,6 @@ const ManageAccount = () => {
 
     const [FormValues, setFormValues] = useState<ManageAccountTypes>({
         name: '',
-        ownername: '',
         ownercpfnumber: '',
         accountnumber: '',
         securitycode: '',
@@ -62,9 +61,6 @@ const ManageAccount = () => {
         const regex = /^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}/
         if (!values.name) {
             errors.name = 'Inserir o nome do banco é obrigatório!'
-        }
-        if (!values.ownername) {
-            errors.ownername = 'Inserir o nome do titular é obrigatório!'
         }
         if (!values.ownercpfnumber) {
             errors.ownercpfnumber = 'Inserir o CPF do titular é obrigatório!'
@@ -136,17 +132,6 @@ const ManageAccount = () => {
                         />
                         <p className="mainsection__secondsectionmngacc__div__form__bankname__errors">
                             {formErrors.name}
-                        </p>
-                        <Input
-                            name="ownername"
-                            type="text"
-                            text="Nome do Titular"
-                            placeholder="Insira o nome do Banco"
-                            value={FormValues.ownername}
-                            OnChange={handleInputChange}
-                        />
-                        <p className="mainsection__secondsectionmngacc__div__form__bankownername__errors">
-                            {formErrors.ownername}
                         </p>
                         <Input
                             name="ownercpfnumber"

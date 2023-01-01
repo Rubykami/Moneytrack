@@ -48,17 +48,16 @@ const Login = () => {
             setIsSubmit(true)
             axios.post('http://localhost:3001/api/auth/sign_in', FormValues)
             .then((response) => {
-                navigate('/profile')
-                e.preventDefault()
                 console.log(response)
+                navigate('/profile')
             })
             .catch((response) => {
                 console.log(response)
             })
             } else {
-                e.preventDefault()
                 setFormErrors(validate(FormValues))
             }
+            e.preventDefault()
     };
 
     return (

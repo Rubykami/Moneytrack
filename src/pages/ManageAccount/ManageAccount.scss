@@ -8,13 +8,13 @@
             display: flex;
             flex-direction: column;
             width: 30rem;
-            height: 55rem;
+            height: 45rem;
             padding-right: 3rem;
             padding-bottom: 0.6rem;
             padding-left: 3rem;
             border: 1px solid black;
             margin-bottom: 6rem;
-            margin-top: 6rem;
+            margin-top: 1rem;
             gap: 2rem;
             
             &__title {
@@ -35,35 +35,29 @@
                     color: red;
                     margin-top: 4.5rem;
                 }
-                &__bankownername__errors  {
+                &__bankCPFvalue__errors  {
                     position: absolute;
                     font-weight: bold;
                     color: red;
                     margin-top: 10.5rem;
                 }
-                &__bankCPFvalue__errors  {
+                &__bankaccountnumber__errors  {
                     position: absolute;
                     font-weight: bold;
                     color: red;
                     margin-top: 16.5rem;
                 }
-                &__bankaccountnumber__errors  {
+                &__banksecuritynumber__errors  {
                     position: absolute;
                     font-weight: bold;
                     color: red;
                     margin-top: 22.5rem;
                 }
-                &__banksecuritynumber__errors  {
-                    position: absolute;
-                    font-weight: bold;
-                    color: red;
-                    margin-top: 28.5rem;
-                }
                 &__bankbalancevalue__errors  {
                     position: absolute;
                     font-weight: bold;
                     color: red;
-                    margin-top: 34.5rem;
+                    margin-top: 28.5rem;
                 }
             }
         }
