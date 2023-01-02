@@ -6,8 +6,15 @@ import { Link } from 'react-router-dom'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
 import axios from 'axios'
 import BankAccount from '../BankAccount/BankAccount'
+import getCookie from '../../hooks/getCookie'
 
 const BalanceInfo = () => {
+
+    const [firstAccount, setFirstAccount] = useState({})
+    const [secondAccount, setSecondAccount] = useState({})
+
+    const userID = getCookie('OrganizzetaCookie_')?.slice(22, 58)
+
     const balanceSection = useRef<HTMLHeadingElement>(null)
 
     const notificationIcon = <IoMdNotificationsOutline />
@@ -17,7 +24,7 @@ const BalanceInfo = () => {
     const HIDDEN_BALANCE = 'hiddenbalance'
     const VISIBLE_BALANCE = 'visiblebalance'
     const HIDDEN_NUMBER = '**********'
-    const API_ACCOUNT_URL = 'http://localhost:3001/api/v1/account'
+    const GET_ACCOUNTS_URL = `http://localhost:3001/api/v1/user/${userID}`
 
     const [visible, setVisibility] = useState<Boolean>(false)
 
@@ -33,25 +40,18 @@ const BalanceInfo = () => {
     const balance = useMemo<String>(() => {
         return visible ? '0' : HIDDEN_NUMBER
     }, [visible])
-    const ALL_ACCOUNTS = useMemo<any>(() => {
-        return []
-    }, [])
 
     const toggleBalanceVisiblity = () => {
         setVisibility(!visible)
     }
 
-    const deleteBanks = () => {
-        axios.delete(API_ACCOUNT_URL + '/1')
-        axios.delete(API_ACCOUNT_URL + '/2')
-        alert('Todos os bancos foram deletados, configure-os novamente.')
-    }
-
     useEffect(() => {
-        axios.get(API_ACCOUNT_URL).then((response) => {
-            ALL_ACCOUNTS.push(response)
+        axios.get(GET_ACCOUNTS_URL)
+        .then((response) => {
+            setFirstAccount(response.data.accounts[0])
+            setSecondAccount(response.data.accounts[1])
         })
-    }, [ALL_ACCOUNTS])
+    }, [GET_ACCOUNTS_URL])
 
     return (
         <>
@@ -90,33 +90,33 @@ const BalanceInfo = () => {
                         <h3 className="mainsection__bankdatasection__title">
                             Minhas contas
                         </h3>
-                        {ALL_ACCOUNTS.length !== 0 ? (
+                        { Object.keys(firstAccount).length !== 0 || Object.keys(secondAccount).length !== 0 ? (
                             <>
-                                {ALL_ACCOUNTS.length === 1 ? (
-                                    <BankAccount
-                                        bankName={ALL_ACCOUNTS[0].bankname}
-                                        accountType={
-                                            ALL_ACCOUNTS[0].accounttype
-                                        }
-                                        balance={ALL_ACCOUNTS[0].balance}
-                                    />
-                                ) : (
+                                {Object.keys(secondAccount).length !== 0 ? (
                                     <>
-                                        <BankAccount
-                                            bankName={ALL_ACCOUNTS[0].bankname}
-                                            accountType={
-                                                ALL_ACCOUNTS[0].accounttype
-                                            }
-                                            balance={ALL_ACCOUNTS[0].balance}
-                                        />
-                                        <BankAccount
-                                            bankName={ALL_ACCOUNTS[1].bankname}
-                                            accountType={
-                                                ALL_ACCOUNTS[1].accounttype
-                                            }
-                                            balance={ALL_ACCOUNTS[1].balance}
-                                        />
-                                    </>
+                                    <BankAccount
+                                        bankName={Object(firstAccount).name}
+                                        accountType={
+                                            Object(firstAccount).accounttype
+                                        }
+                                        balance={Object(firstAccount).balancevalue}
+                                    />
+                                    <BankAccount
+                                        bankName={Object(secondAccount).name}
+                                        accountType={
+                                            Object(secondAccount).accounttype
+                                        }
+                                        balance={Object(secondAccount).balancevalue}
+                                    />
+                                </>
+                                ) : Object.keys(firstAccount) && (
+                                    <BankAccount
+                                        bankName={Object(firstAccount).name}
+                                        accountType={
+                                            Object(firstAccount).accounttype
+                                        }
+                                        balance={Object(firstAccount).balancevalue}
+                                    />
                                 )}
                             </>
                         ) : (
@@ -143,12 +143,6 @@ const BalanceInfo = () => {
                                 Fazer um depósito
                             </button>
                         </Link>
-                        <button
-                            onClick={deleteBanks}
-                            className="mainsection__useractions__depositbtn"
-                        >
-                            Deletar todos os bancos
-                        </button>
                     </section>
                 </section>
                 <div className="mainsection__bottomdiv"></div>

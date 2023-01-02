@@ -12,11 +12,11 @@ import BalanceInfo from '../../components/Balanceinfo/BalanceInfo'
 import { ManageAccountTypes } from '../../types/ManageAccount'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import jwt from 'jwt-decode'
+import getCookie from '../../hooks/getCookie'
 
 interface ManageAccountValidation {
     name?: string
-    ownername?: string
+    user_id?: string
     ownercpfnumber?: string
     accountnumber?: string
     securitycode?: string
@@ -29,11 +29,12 @@ const ManageAccount = () => {
 
     const [FormValues, setFormValues] = useState<ManageAccountTypes>({
         name: '',
+        user_id: getCookie('OrganizzetaCookie_')?.slice(22, 58)!,
         ownercpfnumber: '',
         accountnumber: '',
         securitycode: '',
         balancevalue: '',
-        accounttype: '',
+        accounttype: 'Conta Poupança',
     })
     const [formErrors, setFormErrors] = useState<ManageAccountValidation>({})
     const [isSubmit, setIsSubmit] = useState<boolean>(false)
@@ -49,10 +50,6 @@ const ManageAccount = () => {
     }
 
     const API_ACCOUNT_URL = 'http://localhost:3001/api/v1/account'
-
-    const ALL_ACCOUNTS = useMemo<any>(() => {
-        return []
-    }, [])
 
     const validate = (
         values: ManageAccountValidation
@@ -92,20 +89,15 @@ const ManageAccount = () => {
                 axios.post(API_ACCOUNT_URL, FormValues).then((response) => {
                     alert('Conta criada com sucesso!')
                 }).catch((response) => {
-                    alert('Sò é possível ter 2 contas ativas por usuário.')
+                    alert('Só é permitido ter 2 contas de banco por usuário.')
                 })
         } else {
-            e.preventDefault()
             setFormErrors(validate(FormValues))
         }
+        e.preventDefault()
     }
 
-    useEffect(() => {
-        axios.get(API_ACCOUNT_URL)
-        .then((response) => {
-        })
-    })
-    
+     
 
     return (
         <main className="mainsection">
@@ -116,7 +108,7 @@ const ManageAccount = () => {
                         Banco
                     </h1>
                     <h2 className="mainsection__secondsectionmngacc__div__subtitle">
-                        Dados cadastrados
+                        Dados cadastrais
                     </h2>
                     <form
                         onSubmit={handleSubmit}

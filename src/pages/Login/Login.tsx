@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { LoginType } from '../../types/Login'
 import axios from 'axios'
 import { LoginValidateTypes } from '../../types/LoginValidate'
+import setCookie from '../../hooks/setCookie'
+import removeCookie from '../../hooks/removeCookie'
 
 interface LoginErrors {
     email?: string
@@ -48,17 +50,15 @@ const Login = () => {
             setIsSubmit(true)
             axios.post('http://localhost:3001/api/auth/sign_in', FormValues)
             .then((response) => {
-                console.log(response)
                 navigate('/profile')
-            })
-            .catch((response) => {
-                console.log(response)
+                setCookie('OrganizzetaCookie_', response.headers['access-token'] + response.data.data.id + response.headers.client)
             })
             } else {
                 setFormErrors(validate(FormValues))
             }
             e.preventDefault()
     };
+
 
     return (
         <form className="loginform" onSubmit={handleSubmit}>
