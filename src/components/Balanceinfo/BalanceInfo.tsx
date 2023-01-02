@@ -8,10 +8,13 @@ import axios from 'axios'
 import BankAccount from '../BankAccount/BankAccount'
 import getCookie from '../../hooks/getCookie'
 
+
 const BalanceInfo = () => {
 
     const [firstAccount, setFirstAccount] = useState({})
     const [secondAccount, setSecondAccount] = useState({})
+    const [balancevalue, setBalanceValue] = useState(0)
+
 
     const userID = getCookie('OrganizzetaCookie_')?.slice(22, 58)
 
@@ -23,7 +26,7 @@ const BalanceInfo = () => {
     const CLOSED_EYE_CLASS = 'closedeye'
     const HIDDEN_BALANCE = 'hiddenbalance'
     const VISIBLE_BALANCE = 'visiblebalance'
-    const HIDDEN_NUMBER = '**********'
+    const HIDDEN_NUMBERS = '*'.repeat(String(balancevalue).length)
     const GET_ACCOUNTS_URL = `http://localhost:3001/api/v1/user/${userID}`
 
     const [visible, setVisibility] = useState<Boolean>(false)
@@ -37,9 +40,9 @@ const BalanceInfo = () => {
     const eyeClass = useMemo<String>(() => {
         return visible ? OPENED_EYE_CLASS : CLOSED_EYE_CLASS
     }, [visible])
-    const balance = useMemo<String>(() => {
-        return visible ? '0' : HIDDEN_NUMBER
-    }, [visible])
+    const balance = useMemo<any>(() => {
+        return visible ? balancevalue : HIDDEN_NUMBERS
+    }, [visible, balancevalue])
 
     const toggleBalanceVisiblity = () => {
         setVisibility(!visible)
@@ -50,6 +53,7 @@ const BalanceInfo = () => {
         .then((response) => {
             setFirstAccount(response.data.accounts[0])
             setSecondAccount(response.data.accounts[1])
+            setBalanceValue(Number(Object(firstAccount).balancevalue) + Number(Object(secondAccount).balancevalue))
         })
     }, [GET_ACCOUNTS_URL])
 
