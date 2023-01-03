@@ -8,22 +8,32 @@ import UserPage from './pages/UserPage/UserPage'
 import ManageAccount from './pages/ManageAccount/ManageAccount'
 import Transfers from './pages/Transfers/Transfers'
 import Deposit from './pages/Deposit/Deposit'
+import { BalanceContextProvider } from './contexts/BalanceContext'
+
 
 function App() {
     return (
         <>
-            <Router>
-                <Header />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/profile" element={<UserPage />} />
-                    <Route path="/profile/manageaccount" element={<ManageAccount />} />   
-                    <Route path='/profile/transfers' element={ <Transfers/>} />    
-                    <Route path='/profile/deposit' element={ <Deposit/>} />   
-                </Routes>
-            </Router>
+            <BalanceContextProvider>
+                <Router>
+                    <Header />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/signup" element={<Signup />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/profile" element={<UserPage />} />
+                        <Route
+                            path="/profile/manageaccount"
+                            element={<ManageAccount />}
+                        />
+                        <Route
+                            path="/profile/transfers"
+                            element={<Transfers />}
+                        />
+                        <Route path="/profile/deposit" element={<Deposit />} />
+                    </Routes>
+                </Router>
+            </BalanceContextProvider>
         </>
     )
 }

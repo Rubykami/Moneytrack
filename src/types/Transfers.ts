@@ -1,4 +1,5 @@
 export type TransfersType = {
     transfersvalue: string,
-    accounttype: string
+    withdrawAccount: string,
+    depositAccount: string
 }

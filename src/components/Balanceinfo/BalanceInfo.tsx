@@ -1,61 +1,22 @@
 import './BalanceInfo.scss'
-import { IoMdNotificationsOutline } from 'react-icons/io'
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
-import { useState, useRef, useMemo, useEffect } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
-import axios from 'axios'
 import BankAccount from '../BankAccount/BankAccount'
-import getCookie from '../../hooks/getCookie'
-
+import { BalanceContext } from '../../contexts/BalanceContext'
 
 const BalanceInfo = () => {
-
-    const [firstAccount, setFirstAccount] = useState({})
-    const [secondAccount, setSecondAccount] = useState({})
-    const [balancevalue, setBalanceValue] = useState(0)
-
-
-    const userID = getCookie('OrganizzetaCookie_')?.slice(22, 58)
-
-    const balanceSection = useRef<HTMLHeadingElement>(null)
-
-    const notificationIcon = <IoMdNotificationsOutline />
-
-    const OPENED_EYE_CLASS = 'openedeye'
-    const CLOSED_EYE_CLASS = 'closedeye'
-    const HIDDEN_BALANCE = 'hiddenbalance'
-    const VISIBLE_BALANCE = 'visiblebalance'
-    const HIDDEN_NUMBERS = '*'.repeat(String(balancevalue).length)
-    const GET_ACCOUNTS_URL = `http://localhost:3001/api/v1/user/${userID}`
-
-    const [visible, setVisibility] = useState<Boolean>(false)
-
-    const eyeIcon = useMemo<JSX.Element>(() => {
-        return visible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />
-    }, [visible])
-    const balanceClass = useMemo<String>(() => {
-        return visible ? VISIBLE_BALANCE : HIDDEN_BALANCE
-    }, [visible])
-    const eyeClass = useMemo<String>(() => {
-        return visible ? OPENED_EYE_CLASS : CLOSED_EYE_CLASS
-    }, [visible])
-    const balance = useMemo<any>(() => {
-        return visible ? balancevalue : HIDDEN_NUMBERS
-    }, [visible, balancevalue])
-
-    const toggleBalanceVisiblity = () => {
-        setVisibility(!visible)
-    }
-
-    useEffect(() => {
-        axios.get(GET_ACCOUNTS_URL)
-        .then((response) => {
-            setFirstAccount(response.data.accounts[0])
-            setSecondAccount(response.data.accounts[1])
-            setBalanceValue(Number(Object(firstAccount).balancevalue) + Number(Object(secondAccount).balancevalue))
-        })
-    }, [GET_ACCOUNTS_URL])
+    const {
+        firstAccount,
+        secondAccount,
+        notificationIcon,
+        balanceSection,
+        balanceClass,
+        balance,
+        eyeClass,
+        eyeIcon,
+        toggleBalanceVisiblity,
+    }: any = useContext(BalanceContext)
 
     return (
         <>
@@ -94,40 +55,53 @@ const BalanceInfo = () => {
                         <h3 className="mainsection__bankdatasection__title">
                             Minhas contas
                         </h3>
-                        { Object.keys(firstAccount).length !== 0 || Object.keys(secondAccount).length !== 0 ? (
+                        {Object.keys(firstAccount).length !== 0 ||
+                        Object.keys(secondAccount).length !== 0 ? (
                             <>
                                 {Object.keys(secondAccount).length !== 0 ? (
                                     <>
-                                    <BankAccount
-                                        bankName={Object(firstAccount).name}
-                                        accountType={
-                                            Object(firstAccount).accounttype
-                                        }
-                                        balance={Object(firstAccount).balancevalue}
-                                    />
-                                    <BankAccount
-                                        bankName={Object(secondAccount).name}
-                                        accountType={
-                                            Object(secondAccount).accounttype
-                                        }
-                                        balance={Object(secondAccount).balancevalue}
-                                    />
-                                </>
-                                ) : Object.keys(firstAccount) && (
-                                    <BankAccount
-                                        bankName={Object(firstAccount).name}
-                                        accountType={
-                                            Object(firstAccount).accounttype
-                                        }
-                                        balance={Object(firstAccount).balancevalue}
-                                    />
+                                        <BankAccount
+                                            bankName={Object(firstAccount).name}
+                                            accountType={
+                                                Object(firstAccount).accounttype
+                                            }
+                                            balance={
+                                                Object(firstAccount)
+                                                    .balancevalue
+                                            }
+                                        />
+                                        <BankAccount
+                                            bankName={
+                                                Object(secondAccount).name
+                                            }
+                                            accountType={
+                                                Object(secondAccount)
+                                                    .accounttype
+                                            }
+                                            balance={
+                                                Object(secondAccount)
+                                                    .balancevalue
+                                            }
+                                        />
+                                    </>
+                                ) : (
+                                    Object.keys(firstAccount) && (
+                                        <BankAccount
+                                            bankName={Object(firstAccount).name}
+                                            accountType={
+                                                Object(firstAccount).accounttype
+                                            }
+                                            balance={
+                                                Object(firstAccount)
+                                                    .balancevalue
+                                            }
+                                        />
+                                    )
                                 )}
                             </>
                         ) : (
-                            <Link
-                                to="/profile/manageaccount"
-                            >
-                                <BsFillPlusCircleFill className="mainsection__bankdatasection__plus"/>
+                            <Link to="/profile/manageaccount">
+                                <BsFillPlusCircleFill className="mainsection__bankdatasection__plus" />
                             </Link>
                         )}
                     </section>
