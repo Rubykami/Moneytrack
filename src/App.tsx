@@ -8,13 +8,13 @@ import UserPage from './pages/UserPage/UserPage'
 import ManageAccount from './pages/ManageAccount/ManageAccount'
 import Transfers from './pages/Transfers/Transfers'
 import Deposit from './pages/Deposit/Deposit'
-import { BalanceContextProvider } from './contexts/BalanceContext'
+import GlobalContextProvider from './contexts/GlobalContext'
 
 
 function App() {
     return (
         <>
-            <BalanceContextProvider>
+            <GlobalContextProvider>
                 <Router>
                     <Header />
                     <Routes>
@@ -33,7 +33,7 @@ function App() {
                         <Route path="/profile/deposit" element={<Deposit />} />
                     </Routes>
                 </Router>
-            </BalanceContextProvider>
+            </GlobalContextProvider>
         </>
     )
 }
