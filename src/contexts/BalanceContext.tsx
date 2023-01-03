@@ -3,11 +3,11 @@ import getCookie from '../hooks/getCookie'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import axios from 'axios'
-import GlobalContextProvider from './GlobalContext'
+
 
 export const BalanceContext = createContext({})
 
-export const BalanceContextProvider = () => {
+export const BalanceContextProvider = ({children}: any) => {
     const [balanceValue, setBalanceValue] = useState(0)
     const [firstAccount, setFirstAccount] = useState({})
     const [secondAccount, setSecondAccount] = useState({})
@@ -87,7 +87,7 @@ export const BalanceContextProvider = () => {
                 toggleBalance,
             }}
         >
-            <GlobalContextProvider/>
+            {children}
         </BalanceContext.Provider>
     )
 }

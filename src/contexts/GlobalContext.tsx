@@ -1,14 +1,16 @@
-import { createContext, useContext} from 'react'
+import { createContext } from 'react'
+import { BalanceContextProvider } from './BalanceContext'
 
 export const GlobalContext = createContext({})
 
-export const GlobalContextProvider = ({children}: any) => {
-
-
-
+export const GlobalContextProvider = ({ children }: any) => {
     return (
-        <GlobalContext.Provider value={{}}>{children}</GlobalContext.Provider>
+        <BalanceContextProvider>
+            <GlobalContext.Provider value={{}}>
+                {children}
+            </GlobalContext.Provider>
+        </BalanceContextProvider>
     )
 }
 
-export default GlobalContextProvider;
+export default GlobalContextProvider
