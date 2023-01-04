@@ -1,13 +1,9 @@
 import './ManageAccount.scss'
-import {
-    useState,
-    ChangeEvent,
-    FormEvent,
-} from 'react'
+import { useState, ChangeEvent, FormEvent } from 'react'
 import Input from '../../components/Input/Input'
 import Select from '../../components/Select/Select'
 import BalanceInfo from '../../components/Balanceinfo/BalanceInfo'
-import { ManageAccountTypes } from '../../types/ManageAccount'
+import { ManageAccountTypes } from '../../interfaces/ManageAccount'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import getCookie from '../../hooks/getCookie'
@@ -32,7 +28,7 @@ const ManageAccount = () => {
         accountnumber: '',
         securitycode: '',
         balancevalue: '',
-        accounttype: 'Conta Poupança'
+        accounttype: 'Conta Poupança',
     })
     const [formErrors, setFormErrors] = useState<ManageAccountValidation>({})
     const [isSubmit, setIsSubmit] = useState<boolean>(false)
@@ -41,7 +37,7 @@ const ManageAccount = () => {
         const { name, value } = e.target
         setFormValues({ ...FormValues, [name]: value })
     }
-    
+
     const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target
         setFormValues({ ...FormValues, [name]: value })
@@ -63,30 +59,30 @@ const ManageAccount = () => {
             errors.ownercpfnumber = 'Insira um número de CPF válido!'
         }
         if (!values.accountnumber) {
-            errors.accountnumber =
-                'Inserir o número da conta é obrigatório!'
+            errors.accountnumber = 'Inserir o número da conta é obrigatório!'
         } else if (values.accountnumber.length < 16) {
             errors.accountnumber = 'A conta deve ter 16 números'
         }
         if (!values.securitycode) {
             errors.securitycode = 'O código de segurança é obrigatório!'
         } else if (values.securitycode.length < 3) {
-            errors.securitycode =
-                'O código de segurança deve ter 3 dígitos'
+            errors.securitycode = 'O código de segurança deve ter 3 dígitos'
         }
         if (!values.balancevalue) {
-            errors.balancevalue =
-                'Inserir a quantidade de saldo é obrigatório!'
+            errors.balancevalue = 'Inserir a quantidade de saldo é obrigatório!'
         }
         return errors
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         if (Object.keys(validate(FormValues)).length === 0) {
-                setIsSubmit(true)
-                axios.post(API_ACCOUNT_URL, FormValues).then((response) => {
+            setIsSubmit(true)
+            axios
+                .post(API_ACCOUNT_URL, FormValues)
+                .then((response) => {
                     alert('Conta criada com sucesso!')
-                }).catch((response) => {
+                })
+                .catch((response) => {
                     alert('Só é permitido ter 2 contas de banco por usuário.')
                 })
         } else {
@@ -94,8 +90,6 @@ const ManageAccount = () => {
         }
         e.preventDefault()
     }
-
-     
 
     return (
         <main className="mainsection">

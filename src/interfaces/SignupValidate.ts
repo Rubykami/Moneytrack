@@ -1,4 +1,4 @@
-export type SignupValidateTypes = {
+export interface ISignupValidate  {
     name?: string,
     email?: string,
     password?: string,

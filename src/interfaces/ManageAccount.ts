@@ -1,4 +1,4 @@
-export type ManageAccountTypes = {
+export interface IManageAccount {
     name: string,
     user_id: string,
     ownercpfnumber: string,

@@ -1,5 +1,5 @@
 import '../Balanceinfo/BalanceInfo.scss'
-import { bankAccount } from '../../types/bankAccount'
+import { bankAccount } from '../../interfaces/bankAccount'
 
 const BankAccount: React.FC<bankAccount> = ({
     bankName,

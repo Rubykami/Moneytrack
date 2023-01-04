@@ -1,5 +1,5 @@
 import './Select.scss'
-import { SelectType } from '../../types/Select'
+import { SelectType } from '../../interfaces/Select'
 
 const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectType> = ({
     name,

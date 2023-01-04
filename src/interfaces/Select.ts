@@ -1,6 +1,4 @@
-import React from "react"
-
-export type SelectType = {
+export interface ISelect  {
     name: string,
     optionA: string,
     optionB: string,

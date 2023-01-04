@@ -5,7 +5,7 @@ import {
     useState,
     useContext,
 } from 'react'
-import { DepositType } from '../types/Deposit'
+import { DepositType } from '../interfaces/Deposit'
 import { BalanceContext } from './BalanceContext'
 import axios from 'axios'
 

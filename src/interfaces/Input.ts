@@ -1,6 +1,4 @@
-import React from "react"
-
-export type InputType = {
+export interface IInput {
     type: string,
     text: string,
     name: string,

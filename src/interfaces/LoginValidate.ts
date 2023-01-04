@@ -1,4 +1,4 @@
-export interface LoginValidateTypes  {
+export interface ILoginValidate  {
     email?: string,
     password?:string
 }

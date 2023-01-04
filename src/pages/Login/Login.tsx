@@ -2,9 +2,9 @@ import './Login.scss'
 import { ChangeEvent, useState, FormEvent } from 'react'
 import Input from '../../components/Input/Input'
 import { Link, useNavigate } from 'react-router-dom'
-import { LoginType } from '../../types/Login'
+import { LoginType } from '../../interfaces/Login'
 import axios from 'axios'
-import { LoginValidateTypes } from '../../types/LoginValidate'
+import { LoginValidateTypes } from '../../interfaces/LoginValidate'
 import setCookie from '../../hooks/setCookie'
 
 interface LoginErrors {

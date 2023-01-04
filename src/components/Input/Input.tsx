@@ -1,5 +1,5 @@
 import './Input.scss'
-import { InputType } from '../../types/Input'
+import { InputType } from '../../interfaces/Input'
 import React, { forwardRef } from 'react'
 
 const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputType> = (
