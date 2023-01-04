@@ -5,32 +5,37 @@ import {
     useState,
     useContext,
 } from 'react'
-import { DepositType } from '../interfaces/Deposit'
+import { IDeposit } from '../interfaces/Deposit'
 import { BalanceContext } from './BalanceContext'
 import axios from 'axios'
+import { IDepositProps } from '../interfaces/DepositProps'
+import { BalanceConsts } from '../interfaces/DepositBalanceConsts'
 
 export const DepositContext = createContext({})
 
-export const DepositContextProvider = ({ children }: any): any => {
-    const { CURRENT_USER_INFO, balanceValue }: any = useContext(BalanceContext)
+export const DepositContextProvider: React.FC<IDepositProps> = ({
+    children,
+}) => {
+    const { CURRENT_USER_INFO, balanceValue }: BalanceConsts =
+        useContext(BalanceContext)
 
-    const [FormValues, setFormValues] = useState<DepositType>({
+    const [FormValues, setFormValues] = useState<IDeposit>({
         depositbalancevalue: '',
         accounttype: '',
     })
 
-    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>): any => {
+    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>): void => {
         const { name, value } = e.target
         setFormValues({ ...FormValues, [name]: value })
     }
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>): any => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target
         setFormValues({ ...FormValues, [name]: value })
     }
 
-    const FormSubmit = (e: FormEvent<HTMLFormElement>): any => {
-        return axios.patch(CURRENT_USER_INFO, {
+    const FormSubmit = async (e: FormEvent<HTMLFormElement>): Promise<any> => {
+        return await axios.patch(String(CURRENT_USER_INFO), {
             balancevalue: String(
                 Number(balanceValue) + Number(FormValues.depositbalancevalue)
             ),

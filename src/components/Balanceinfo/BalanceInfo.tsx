@@ -39,14 +39,18 @@ const BalanceInfo: React.FC = () => {
                             </h1>
                             <h2
                                 ref={balanceSection}
-                                className={`mainsection__balancesection__div__${String(balanceClass)}`}
+                                className={`mainsection__balancesection__div__${String(
+                                    balanceClass
+                                )}`}
                             >
                                 R$ {balance}
                             </h2>
                         </div>
                         <div
                             onClick={toggleBalanceVisiblity}
-                            className={`mainsection__balancesection__div__${String(eyeClass)}`}
+                            className={`mainsection__balancesection__div__${String(
+                                eyeClass
+                            )}`}
                         >
                             {eyeIcon}
                         </div>
@@ -85,16 +89,15 @@ const BalanceInfo: React.FC = () => {
                                         />
                                     </>
                                 ) : (
-                                        <BankAccount
-                                            bankName={Object(firstAccount).name}
-                                            accountType={
-                                                Object(firstAccount).accounttype
-                                            }
-                                            balance={
-                                                Object(firstAccount)
-                                                    .balancevalue
-                                            }
-                                        />
+                                    <BankAccount
+                                        bankName={Object(firstAccount).name}
+                                        accountType={
+                                            Object(firstAccount).accounttype
+                                        }
+                                        balance={
+                                            Object(firstAccount).balancevalue
+                                        }
+                                    />
                                 )}
                             </>
                         ) : (
