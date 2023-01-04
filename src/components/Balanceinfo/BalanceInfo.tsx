@@ -5,7 +5,7 @@ import { BsFillPlusCircleFill } from 'react-icons/bs'
 import BankAccount from '../BankAccount/BankAccount'
 import { BalanceContext } from '../../contexts/BalanceContext'
 
-const BalanceInfo = (): any => {
+const BalanceInfo: React.FC = () => {
     const {
         firstAccount,
         secondAccount,

@@ -1,7 +1,7 @@
 import './Select.scss'
-import { SelectType } from '../../interfaces/Select'
+import { ISelect } from '../../interfaces/Select'
 
-const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectType> = ({
+const Select: React.ForwardRefRenderFunction<HTMLSelectElement, ISelect> = ({
     name,
     onChange,
     value,
@@ -31,10 +31,12 @@ const Select: React.ForwardRefRenderFunction<HTMLSelectElement, SelectType> = ({
                 <option className="select__accounttype__div__select__option">
                     {optionB}
                 </option>
-                {optionC && (
+                {optionC === '' ? (
                     <option className="select__accounttype__diSv__select__option">
                         {optionC}
                     </option>
+                ) : (
+                    ''
                 )}
             </select>
         </div>

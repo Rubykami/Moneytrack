@@ -1,8 +1,8 @@
 import './Input.scss'
-import { InputType } from '../../interfaces/Input'
+import { IInput } from '../../interfaces/Input'
 import React, { forwardRef } from 'react'
 
-const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputType> = (
+const Input: React.ForwardRefRenderFunction<HTMLInputElement, IInput> = (
     { name = '', type, OnChange, value, text, ...rest },
     ref
 ) => {

@@ -1,7 +1,7 @@
 import './Header.scss'
 import { Link } from 'react-router-dom'
 
-const Header = () => {
+const Header: React.FC = () => {
     return (
         <nav className="navbar">
             <div className="navbar__items">
