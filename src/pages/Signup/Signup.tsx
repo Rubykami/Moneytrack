@@ -4,8 +4,8 @@ import Input from '../../components/Input/Input'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { SignupType } from '../../interfaces/Signup'
-import { SignupValidateTypes } from '../../interfaces/SignupValidate'
+import { ISignup } from '../../interfaces/Signup'
+import { ISignupValidate } from '../../interfaces/SignupValidate'
 
 interface SignupErrors {
     name?: string

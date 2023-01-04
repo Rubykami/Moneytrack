@@ -2,7 +2,7 @@ import './UserPage.scss'
 import { BsFillPatchCheckFill } from 'react-icons/bs'
 import BalanceInfo from '../../components/Balanceinfo/BalanceInfo'
 
-const UserPage = () => {
+const UserPage = (): any => {
     return (
         <main className="mainsection">
             <BalanceInfo />

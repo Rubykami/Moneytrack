@@ -2,32 +2,28 @@ import './Login.scss'
 import { ChangeEvent, useState, FormEvent } from 'react'
 import Input from '../../components/Input/Input'
 import { Link, useNavigate } from 'react-router-dom'
-import { LoginType } from '../../interfaces/Login'
+import { ILogin } from '../../interfaces/Login'
 import axios from 'axios'
-import { LoginValidateTypes } from '../../interfaces/LoginValidate'
+import { ILoginValidate } from '../../interfaces/LoginValidate'
 import setCookie from '../../hooks/setCookie'
-
-interface LoginErrors {
-    email?: string
-    password?: string
-}
+import { ILoginErrors } from '../../interfaces/LogginErrors'
 
 const Login = (): any => {
     const navigate = useNavigate()
 
-    const [FormValues, setFormValues] = useState<LoginType>({
+    const [FormValues, setFormValues] = useState<ILogin>({
         email: '',
         password: '',
     })
-    const [formErrors, setFormErrors] = useState<LoginErrors>({})
+    const [formErrors, setFormErrors] = useState<ILoginErrors>({})
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>): any => {
         const { name, value } = e.target
         setFormValues({ ...FormValues, [name]: value })
     }
 
-    const validate = (values: LoginValidateTypes): LoginValidateTypes => {
-        const errors: LoginValidateTypes = {}
+    const validate = (values: ILoginValidate): ILoginValidate => {
+        const errors: ILoginValidate = {}
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i
         if (values.email === undefined) {
             errors.email = 'Inserir o email é obrigatório!'
