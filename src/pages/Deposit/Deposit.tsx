@@ -1,12 +1,14 @@
 import './Deposit.scss'
-import { useState, ChangeEvent, FormEvent } from 'react'
+import { useState, ChangeEvent, FormEvent, useContext } from 'react'
 import Select from '../../components/Select/Select'
 import Input from '../../components/Input/Input'
 import Balanceinfo from '../../components/Balanceinfo/BalanceInfo'
 import { DepositType } from '../../types/Deposit'
 import axios from 'axios'
+import { BalanceContext } from '../../contexts/BalanceContext'
 
 const Deposit = () => {
+    const { CURRENT_USER_INFO, balanceValue }: any = useContext(BalanceContext)
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -20,13 +22,16 @@ const Deposit = () => {
 
     const [FormValues, setFormValues] = useState<DepositType>({
         depositbalancevalue: '',
-        accounttype: ''
+        accounttype: '',
     })
 
     const FormSubmit = (e: FormEvent<HTMLFormElement>) => {
-        console.log(e)
+        axios.patch(CURRENT_USER_INFO, {
+            balancevalue: String(
+                Number(balanceValue) + Number(FormValues.depositbalancevalue)
+            ),
+        })
     }
-
 
     return (
         <main className="mainsection">
@@ -40,7 +45,10 @@ const Deposit = () => {
                     Formas de pagamento <br />
                     PIX: CPF: 999.999.999-99, email: contato@organizzeta.com
                 </h2>
-                <form onSubmit={FormSubmit} className="mainsection__secondsectiondeposit__form">
+                <form
+                    onSubmit={FormSubmit}
+                    className="mainsection__secondsectiondeposit__form"
+                >
                     <section className="mainsection__secondsectiondeposit__form__section">
                         <Input
                             name="depositbalancevalue"
@@ -52,9 +60,9 @@ const Deposit = () => {
                         />
                         <div className="mainsection__secondsectiondeposit__form__selectdiv">
                             <Select
-                            onChange={handleSelectChange}
-                            value={FormValues.accounttype}
-                                name="depositlocation"
+                                onChange={handleSelectChange}
+                                value={FormValues.accounttype}
+                                name="accounttype"
                                 selectinfo="Depositar através de:"
                                 optionA="CPF"
                                 optionB="Email"

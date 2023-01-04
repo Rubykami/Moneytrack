@@ -6,7 +6,7 @@ import { LoginType } from '../../types/Login'
 import axios from 'axios'
 import { LoginValidateTypes } from '../../types/LoginValidate'
 import setCookie from '../../hooks/setCookie'
-import removeCookie from '../../hooks/removeCookie'
+
 
 interface LoginErrors {
     email?: string

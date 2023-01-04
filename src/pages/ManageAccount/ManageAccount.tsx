@@ -3,8 +3,6 @@ import {
     useState,
     ChangeEvent,
     FormEvent,
-    useMemo,
-    useEffect,
 } from 'react'
 import Input from '../../components/Input/Input'
 import Select from '../../components/Select/Select'
@@ -34,7 +32,7 @@ const ManageAccount = () => {
         accountnumber: '',
         securitycode: '',
         balancevalue: '',
-        accounttype: 'Conta Poupança',
+        accounttype: 'Conta Poupança'
     })
     const [formErrors, setFormErrors] = useState<ManageAccountValidation>({})
     const [isSubmit, setIsSubmit] = useState<boolean>(false)
@@ -43,7 +41,7 @@ const ManageAccount = () => {
         const { name, value } = e.target
         setFormValues({ ...FormValues, [name]: value })
     }
-
+    
     const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target
         setFormValues({ ...FormValues, [name]: value })

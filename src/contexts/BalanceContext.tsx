@@ -1,3 +1,4 @@
+
 import { createContext, useState, useRef, useMemo, useEffect} from 'react'
 import getCookie from '../hooks/getCookie'
 import { IoMdNotificationsOutline } from 'react-icons/io'
@@ -8,6 +9,8 @@ import axios from 'axios'
 export const BalanceContext = createContext({})
 
 export const BalanceContextProvider = ({children}: any) => {
+
+    
     const [balanceValue, setBalanceValue] = useState(0)
     const [firstAccount, setFirstAccount] = useState({})
     const [secondAccount, setSecondAccount] = useState({})
@@ -15,11 +18,11 @@ export const BalanceContextProvider = ({children}: any) => {
     
     const balanceSection = useRef<HTMLHeadingElement>(null)
     
+    const userID = getCookie('OrganizzetaCookie_')?.slice(22, 58)
+    const CURRENT_USER_INFO = `${process.env.REACT_APP_USERS_INFO}`.concat(`/${userID}`)
     
     const notificationIcon = <IoMdNotificationsOutline />
     
-    const userID = getCookie('OrganizzetaCookie_')?.slice(22, 58)
-    const CURRENT_USER_INFO = `${process.env.REACT_APP_USERS_INFO}`.concat(`/${userID}`)
     const HIDDEN_NUMBERS = '*'.repeat(String(balanceValue).length)
     
     const HIDDEN_BALANCE = 'hiddenbalance'
@@ -38,13 +41,7 @@ export const BalanceContextProvider = ({children}: any) => {
     const eyeClass = useMemo<String>(() => {
         return visible ? OPENED_EYE_CLASS : CLOSED_EYE_CLASS
     }, [visible])
-    const toggleBalance = useMemo(() => {
-        //eslint-disable-line
-        setBalanceValue(
-            Number(Object(firstAccount).balancevalue) +
-                Number(Object(secondAccount).balancevalue)
-        )
-    }, [firstAccount, secondAccount, setBalanceValue])
+
 
     const toggleBalanceVisiblity = () => {
         setVisibility(!visible)
@@ -54,11 +51,14 @@ export const BalanceContextProvider = ({children}: any) => {
         axios.get(CURRENT_USER_INFO).then((CURRENT_USER) => {
             setFirstAccount(CURRENT_USER.data.accounts[0])
             setSecondAccount(CURRENT_USER.data.accounts[1])
+            setBalanceValue(CURRENT_USER.data.balancevalue)
+            console.log(CURRENT_USER)
         })}
 
         useEffect(() => {
             getCurrentUserInfo()
         },[]) // eslint-disable-line
+
 
 
     return (
@@ -84,7 +84,9 @@ export const BalanceContextProvider = ({children}: any) => {
                 balanceClass,
                 eyeClass,
                 balance,
-                toggleBalance,
+                CURRENT_USER_INFO,
+                userID
+
             }}
         >
             {children}
