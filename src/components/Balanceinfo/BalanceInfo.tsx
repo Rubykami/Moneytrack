@@ -5,7 +5,7 @@ import { BsFillPlusCircleFill } from 'react-icons/bs'
 import BankAccount from '../BankAccount/BankAccount'
 import { BalanceContext } from '../../contexts/BalanceContext'
 
-const BalanceInfo = () => {
+const BalanceInfo = (): any => {
     const {
         firstAccount,
         secondAccount,
@@ -39,14 +39,14 @@ const BalanceInfo = () => {
                             </h1>
                             <h2
                                 ref={balanceSection}
-                                className={`mainsection__balancesection__div__${balanceClass}`}
+                                className={`mainsection__balancesection__div__${String(balanceClass)}`}
                             >
                                 R$ {balance}
                             </h2>
                         </div>
                         <div
                             onClick={toggleBalanceVisiblity}
-                            className={`mainsection__balancesection__div__${eyeClass}`}
+                            className={`mainsection__balancesection__div__${String(eyeClass)}`}
                         >
                             {eyeIcon}
                         </div>
@@ -85,7 +85,6 @@ const BalanceInfo = () => {
                                         />
                                     </>
                                 ) : (
-                                    Object.keys(firstAccount) && (
                                         <BankAccount
                                             bankName={Object(firstAccount).name}
                                             accountType={
@@ -96,7 +95,6 @@ const BalanceInfo = () => {
                                                     .balancevalue
                                             }
                                         />
-                                    )
                                 )}
                             </>
                         ) : (
