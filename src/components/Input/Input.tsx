@@ -1,27 +1,27 @@
-import './Input.scss';
-import {InputType} from '../../types/Input';
-import React, { forwardRef} from 'react';
+import './Input.scss'
+import { InputType } from '../../types/Input'
+import React, { forwardRef } from 'react'
 
-const Input: React.ForwardRefRenderFunction< HTMLInputElement, InputType> = ({name='', type, OnChange, value, text, ...rest}, ref) => {
-
-    
+const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputType> = (
+    { name = '', type, OnChange, value, text, ...rest },
+    ref
+) => {
     return (
-        <div className='InputBlock'>
-            <label htmlFor={name} className='InputBlock__Label'>
+        <div className="InputBlock">
+            <label htmlFor={name} className="InputBlock__Label">
                 {text}
             </label>
-            <input 
-            className='InputBlock__Input'
-            type={type}
-            name={name}
-            value={value}
-            onChange={OnChange}
-            ref={ref}
-            {...rest}
+            <input
+                className="InputBlock__Input"
+                type={type}
+                name={name}
+                value={value}
+                onChange={OnChange}
+                ref={ref}
+                {...rest}
             />
         </div>
     )
 }
 
-export default forwardRef(Input);
-
+export default forwardRef(Input)

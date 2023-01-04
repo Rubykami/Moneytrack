@@ -7,25 +7,21 @@ import axios from 'axios'
 import { LoginValidateTypes } from '../../types/LoginValidate'
 import setCookie from '../../hooks/setCookie'
 
-
 interface LoginErrors {
     email?: string
     password?: string
 }
 
-const Login = () => {
-
+const Login = (): any => {
     const navigate = useNavigate()
-
 
     const [FormValues, setFormValues] = useState<LoginType>({
         email: '',
         password: '',
     })
     const [formErrors, setFormErrors] = useState<LoginErrors>({})
-    const [isSubmit, setIsSubmit] = useState<boolean>(false)
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>): any => {
         const { name, value } = e.target
         setFormValues({ ...FormValues, [name]: value })
     }
@@ -33,35 +29,40 @@ const Login = () => {
     const validate = (values: LoginValidateTypes): LoginValidateTypes => {
         const errors: LoginValidateTypes = {}
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i
-        if (!values.email) {
+        if (values.email === undefined) {
             errors.email = 'Inserir o email é obrigatório!'
-        } else if (!regex.test(values.email)) {
+        } else if (!regex.test(values.email ?? '')) {
             errors.email = 'Este não é um email válido!'
         }
-        if (!values.password) {
+        if (values.password === undefined) {
             errors.password = 'Inserir uma senha é obrigatório!'
         }
         return errors
     }
 
-    
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (
+        e: FormEvent<HTMLFormElement>
+    ): Promise<any> => {
         if (Object.keys(validate(FormValues)).length === 0) {
-            setIsSubmit(true)
-            axios.post('http://localhost:3001/api/auth/sign_in', FormValues)
-            .then((response) => {
-                navigate('/profile')
-                setCookie('OrganizzetaCookie_', response.headers['access-token'] + response.data.data.id + response.headers.client)
-            })
-            } else {
-                setFormErrors(validate(FormValues))
-            }
-            e.preventDefault()
-    };
-
+            await axios
+                .post('http://localhost:3001/api/auth/sign_in', FormValues)
+                .then((response) => {
+                    navigate('/profile')
+                    setCookie(
+                        'OrganizzetaCookie_',
+                        String(response.headers['access-token']) +
+                            String(response.data.data.id) +
+                            String(response.headers.client)
+                    )
+                })
+        } else {
+            setFormErrors(validate(FormValues))
+        }
+        e.preventDefault()
+    }
 
     return (
-        <form className="loginform" onSubmit={handleSubmit}>
+        <form className="loginform" onSubmit={() => handleSubmit}>
             <fieldset className="loginform__fieldset">
                 <h1 className="loginform__fieldset__title">Login</h1>
                 <Input

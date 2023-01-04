@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie';
+import Cookies from 'js-cookie'
 
 const setCookie = (cookieName: string, usrInfo: string) => {
     Cookies.set(cookieName, usrInfo, {
@@ -9,4 +9,4 @@ const setCookie = (cookieName: string, usrInfo: string) => {
     })
 }
 
-export default setCookie;
+export default setCookie

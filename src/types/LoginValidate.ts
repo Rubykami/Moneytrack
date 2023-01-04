@@ -1,4 +1,4 @@
-export type LoginValidateTypes = {
+export interface LoginValidateTypes  {
     email?: string,
     password?:string
 }

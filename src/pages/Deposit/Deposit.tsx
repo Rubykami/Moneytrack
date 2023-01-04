@@ -1,37 +1,17 @@
 import './Deposit.scss'
-import { useState, ChangeEvent, FormEvent, useContext } from 'react'
+import { useContext } from 'react'
 import Select from '../../components/Select/Select'
 import Input from '../../components/Input/Input'
 import Balanceinfo from '../../components/Balanceinfo/BalanceInfo'
-import { DepositType } from '../../types/Deposit'
-import axios from 'axios'
-import { BalanceContext } from '../../contexts/BalanceContext'
+import { DepositContext } from '../../contexts/DepositContext'
 
-const Deposit = () => {
-    const { CURRENT_USER_INFO, balanceValue }: any = useContext(BalanceContext)
-
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
-        setFormValues({ ...FormValues, [name]: value })
-    }
-
-    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        const { name, value } = e.target
-        setFormValues({ ...FormValues, [name]: value })
-    }
-
-    const [FormValues, setFormValues] = useState<DepositType>({
-        depositbalancevalue: '',
-        accounttype: '',
-    })
-
-    const FormSubmit = (e: FormEvent<HTMLFormElement>) => {
-        axios.patch(CURRENT_USER_INFO, {
-            balancevalue: String(
-                Number(balanceValue) + Number(FormValues.depositbalancevalue)
-            ),
-        })
-    }
+const Deposit = (): any => {
+    const {
+        FormSubmit,
+        handleInputChange,
+        handleSelectChange,
+        FormValues,
+    }: any = useContext(DepositContext)
 
     return (
         <main className="mainsection">

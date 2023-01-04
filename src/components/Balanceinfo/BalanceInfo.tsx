@@ -5,7 +5,6 @@ import { BsFillPlusCircleFill } from 'react-icons/bs'
 import BankAccount from '../BankAccount/BankAccount'
 import { BalanceContext } from '../../contexts/BalanceContext'
 
-
 const BalanceInfo = () => {
     const {
         firstAccount,
@@ -18,7 +17,6 @@ const BalanceInfo = () => {
         eyeIcon,
         toggleBalanceVisiblity,
     }: any = useContext(BalanceContext)
-
 
     return (
         <>
