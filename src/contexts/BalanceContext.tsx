@@ -5,12 +5,12 @@ import React, {
     useMemo,
     useEffect,
 } from 'react'
-import getCookie from '../hooks/getCookie'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import axios from 'axios'
 import { IBalanceProps } from '../interfaces/BalanceProps'
 import { IAccountProps } from '../interfaces/AccountProps'
+import Cookie from 'js-cookie'
 
 export const BalanceContext = createContext({})
 
@@ -40,7 +40,7 @@ export const BalanceContextProvider: React.FC<IBalanceProps> = ({
 
     const balanceSection = useRef<HTMLHeadingElement>(null)
 
-    const userID = getCookie('OrganizzetaCookie_')?.slice(22, 58)
+    const userID = Cookie.get('OrganizzetaCookie_')?.slice(22, 58)
     const CURRENT_USER_INFO = `${String(
         process.env.REACT_APP_USERS_INFO
     )}`.concat(`/${String(userID)}`)

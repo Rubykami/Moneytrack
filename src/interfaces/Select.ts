@@ -4,6 +4,6 @@ export interface ISelect  {
     optionB: string,
     optionC: string,
     selectinfo: string,
-    value: string,
+    value?: string,
     onChange: React.ChangeEventHandler<HTMLSelectElement>
 }

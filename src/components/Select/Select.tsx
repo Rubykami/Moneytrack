@@ -31,7 +31,7 @@ const Select: React.ForwardRefRenderFunction<HTMLSelectElement, ISelect> = ({
                 <option className="select__accounttype__div__select__option">
                     {optionB}
                 </option>
-                {optionC === '' ? (
+                {optionC !== '' ? (
                     <option className="select__accounttype__diSv__select__option">
                         {optionC}
                     </option>

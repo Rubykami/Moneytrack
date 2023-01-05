@@ -1,5 +1,5 @@
-import './assets/global.scss' 
-import Header from './components/Header/Header' 
+import './assets/global.scss'
+import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Signup from './pages/Signup/Signup'
@@ -9,7 +9,6 @@ import ManageAccount from './pages/ManageAccount/ManageAccount'
 import Transfers from './pages/Transfers/Transfers'
 import Deposit from './pages/Deposit/Deposit'
 import GlobalContextProvider from './contexts/GlobalContext'
-
 
 function App(): any {
     return (

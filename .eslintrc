@@ -15,8 +15,7 @@
         "ecmaVersion": "latest",
         "sourceType": "module",
         "parser": "@typescript-eslint/parser",
-        "project": "./tsconfig.json",
-        "tsconfigRootDir": "MoneyTrack"
+        "project": "./moneytrack/tsconfig.json"
     },
     "plugins": [
         "react",

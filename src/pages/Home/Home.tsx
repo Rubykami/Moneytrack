@@ -7,10 +7,10 @@ import { CgFacebook } from 'react-icons/cg'
 import { BsTwitter, BsLinkedin } from 'react-icons/bs'
 import { SiInstagram } from 'react-icons/si'
 
-const Home = (): any => {
+const Home: React.FC = () => {
     const Navigate = useNavigate()
 
-    const RedirectToSignupPage = (): any => {
+    const RedirectToSignupPage = (): void => {
         Navigate('/signup')
     }
 

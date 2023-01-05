@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import './Transfers.scss'
 import { useState, ChangeEvent, FormEvent, useEffect, useContext } from 'react'
 import Input from '../../components/Input/Input'
@@ -5,18 +6,15 @@ import Select from '../../components/Select/Select'
 import Balanceinfo from '../../components/Balanceinfo/BalanceInfo'
 import { ITransfers } from '../../interfaces/Transfers'
 import axios from 'axios'
-import getCookie from '../../hooks/getCookie'
 import { BalanceContext } from '../../contexts/BalanceContext'
 
-const Transfers = () => {
+
+const Transfers: React.FC = () => {
     const {
         balanceValue,
-        setBalanceValue,
         firstAccount,
-        setFirstAccount,
         userID,
         secondAccount,
-        setSecondAccount,
         CURRENT_USER_INFO,
     }: any = useContext(BalanceContext)
 
@@ -25,32 +23,32 @@ const Transfers = () => {
     const [firstBankName, setFirstBankName] = useState('')
     const [secondBankName, setSecondBankName] = useState('')
 
-    const firstAccountID = firstAccount['id']
-    const secondAccountID = secondAccount['id']
+    const firstAccountID = firstAccount.id
+    const secondAccountID = secondAccount.id
 
     const CURRENT_USER_FIRST_ACCOUNT =
-        `${process.env.REACT_APP_USERS_ACCOUNT_INFO}`.concat(
-            `/${firstAccountID}`
+        `${String(process.env.REACT_APP_USERS_ACCOUNT_INFO)}`.concat(
+            `/${String(firstAccountID)}`
         )
     const CURRENT_USER_SECOND_ACCOUNT =
-        `${process.env.REACT_APP_USERS_ACCOUNT_INFO}`.concat(
-            `/${secondAccountID}`
+        `${String(process.env.REACT_APP_USERS_ACCOUNT_INFO)}`.concat(
+            `/${String(secondAccountID)}`
         )
 
-    const [FormValues, setFormValues] = useState<TransfersType>({
+    const [FormValues, setFormValues] = useState<ITransfers>({
         transfersvalue: '',
         withdrawAccount: withdrawAccount,
         depositAccount: depositAccount,
     })
 
-    const USERS_ACCOUNT_INFO = `${process.env.REACT_APP_USERS_ACCOUNT_INFO}`
+    const USERS_ACCOUNT_INFO = `${String(process.env.REACT_APP_USERS_ACCOUNT_INFO)}`
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target
         setFormValues({ ...FormValues, [name]: value })
     }
 
-    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>): void => {
         const { name, value } = e.target
         setFormValues({ ...FormValues, [name]: value })
         switch (name) {
@@ -63,7 +61,7 @@ const Transfers = () => {
         }
     }
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<any> => {
         if (withdrawAccount === 'Carteira' && depositAccount === 'Carteira') {
             alert(
                 'Não é permitido transferir dinheiro da sua carteira para ela mesma.'
@@ -72,14 +70,14 @@ const Transfers = () => {
             withdrawAccount === 'Carteira' &&
             depositAccount === firstBankName
         ) {
-            axios.patch(CURRENT_USER_INFO, {
+        await    axios.patch(CURRENT_USER_INFO, {
                 balancevalue: String(
                     Number(balanceValue) - Number(FormValues.transfersvalue)
                 ),
             })
-            axios.patch(CURRENT_USER_FIRST_ACCOUNT, {
+            await  axios.patch(CURRENT_USER_FIRST_ACCOUNT, {
                 balancevalue: String(
-                    Number(firstAccount['balancevalue']) +
+                    Number(firstAccount.balancevalue) +
                         Number(FormValues.transfersvalue)
                 ),
             })
@@ -87,14 +85,14 @@ const Transfers = () => {
             withdrawAccount === 'Carteira' &&
             depositAccount === secondBankName
         ) {
-            axios.patch(CURRENT_USER_INFO, {
+            await   axios.patch(CURRENT_USER_INFO, {
                 balancevalue: String(
                     Number(balanceValue) - Number(FormValues.transfersvalue)
                 ),
             })
-            axios.patch(CURRENT_USER_SECOND_ACCOUNT, {
+            await  axios.patch(CURRENT_USER_SECOND_ACCOUNT, {
                 balancevalue: String(
-                    Number(secondAccount['balancevalue']) +
+                    Number(secondAccount.balancevalue) +
                         Number(FormValues.transfersvalue)
                 ),
             })
@@ -102,13 +100,13 @@ const Transfers = () => {
             withdrawAccount === firstBankName &&
             depositAccount === 'Carteira'
         ) {
-            axios.patch(CURRENT_USER_FIRST_ACCOUNT, {
+            await  axios.patch(CURRENT_USER_FIRST_ACCOUNT, {
                 balancevalue: String(
-                    Number(firstAccount['balancevalue']) -
+                    Number(firstAccount.balancevalue) -
                         Number(FormValues.transfersvalue)
                 ),
             })
-            axios.patch(CURRENT_USER_INFO, {
+            await  axios.patch(CURRENT_USER_INFO, {
                 balancevalue: String(
                     Number(balanceValue) + Number(FormValues.transfersvalue)
                 ),
@@ -117,13 +115,13 @@ const Transfers = () => {
             withdrawAccount === secondBankName &&
             depositAccount === 'Carteira'
         ) {
-            axios.patch(CURRENT_USER_SECOND_ACCOUNT, {
+            await    axios.patch(CURRENT_USER_SECOND_ACCOUNT, {
                 balancevalue: String(
-                    Number(secondAccount['balancevalue']) -
+                    Number(secondAccount.balancevalue) -
                         Number(FormValues.transfersvalue)
                 ),
             })
-            axios.patch(CURRENT_USER_INFO, {
+            await  axios.patch(CURRENT_USER_INFO, {
                 balancevalue: String(
                     Number(balanceValue) + Number(FormValues.transfersvalue)
                 ),
@@ -132,15 +130,15 @@ const Transfers = () => {
             withdrawAccount === firstBankName &&
             depositAccount === secondBankName
         ) {
-            axios.patch(CURRENT_USER_FIRST_ACCOUNT, {
+            await  axios.patch(CURRENT_USER_FIRST_ACCOUNT, {
                 balancevalue: String(
-                    Number(firstAccount['balancevalue']) -
+                    Number(firstAccount.balancevalue) -
                         Number(FormValues.transfersvalue)
                 ),
             })
-            axios.patch(CURRENT_USER_SECOND_ACCOUNT, {
+            await  axios.patch(CURRENT_USER_SECOND_ACCOUNT, {
                 balancevalue: String(
-                    Number(secondAccount['balancevalue']) +
+                    Number(secondAccount.balancevalue) +
                         Number(FormValues.transfersvalue)
                 ),
             })
@@ -148,34 +146,34 @@ const Transfers = () => {
             withdrawAccount === secondBankName &&
             depositAccount === firstBankName
         ) {
-            axios.patch(CURRENT_USER_SECOND_ACCOUNT, {
+            await   axios.patch(CURRENT_USER_SECOND_ACCOUNT, {
                 balancevalue: String(
-                    Number(secondAccount['balancevalue']) -
+                    Number(secondAccount.balancevalue) -
                         Number(FormValues.transfersvalue)
                 ),
             })
-            axios.patch(CURRENT_USER_FIRST_ACCOUNT, {
+            await axios.patch(CURRENT_USER_FIRST_ACCOUNT, {
                 balancevalue: String(
-                    Number(firstAccount['balancevalue']) +
+                    Number(firstAccount.balancevalue) +
                         Number(FormValues.transfersvalue)
                 ),
             })
         }
     }
 
-    const getUsersAccountInfo = () => {
-        axios.get(USERS_ACCOUNT_INFO).then((response) => {
-            const CURRENT_USER_ACCOUNTS = response.data.filter(
-                (x: any) => x['user_id'] === userID
-            )
-            setFirstBankName(CURRENT_USER_ACCOUNTS[0].name)
-            setSecondBankName(CURRENT_USER_ACCOUNTS[1].name)
-        })
-    }
-
-    useEffect(() => {
+    const getUsersAccountInfo = async (): Promise<void> => {
+        const response = await axios.get(USERS_ACCOUNT_INFO)
+            const CURRENT_USER_ACCOUNTS = await response.data.filter(
+              (x: { user_id: string }) => x.user_id === userID
+            );
+            setFirstBankName(CURRENT_USER_ACCOUNTS[0].name);
+            setSecondBankName(CURRENT_USER_ACCOUNTS[1].name);
+      };
+      
+      useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         getUsersAccountInfo()
-    }, []) //eslint-disable-line
+      }, []);
 
     return (
         <main className="mainsection">
@@ -186,7 +184,7 @@ const Transfers = () => {
                     Organizzeta!
                 </h1>
                 <form
-                    onSubmit={handleSubmit}
+                    onSubmit={() => handleSubmit}
                     className="mainsection__transferssection__form"
                 >
                     <section className="mainsection__transferssection__form__section">

@@ -4,14 +4,15 @@ import Select from '../../components/Select/Select'
 import Input from '../../components/Input/Input'
 import Balanceinfo from '../../components/Balanceinfo/BalanceInfo'
 import { DepositContext } from '../../contexts/DepositContext'
+import { IDepositContextProps } from '../../interfaces/DepositContextProps'
 
-const Deposit = (): any => {
+const Deposit: React.FC = () => {
     const {
         FormSubmit,
         handleInputChange,
         handleSelectChange,
         FormValues,
-    }: any = useContext(DepositContext)
+    }: IDepositContextProps = useContext(DepositContext)
 
     return (
         <main className="mainsection">
@@ -33,15 +34,15 @@ const Deposit = (): any => {
                         <Input
                             name="depositbalancevalue"
                             type="number"
-                            OnChange={handleInputChange}
+                            OnChange={() => handleInputChange}
                             placeholder="Insira a quantidade a ser depositada"
                             text="Saldo"
-                            value={FormValues.depositbalancevalue}
+                            value={FormValues?.depositbalancevalue}
                         />
                         <div className="mainsection__secondsectiondeposit__form__selectdiv">
                             <Select
-                                onChange={handleSelectChange}
-                                value={FormValues.accounttype}
+                                onChange={() => handleSelectChange}
+                                value={FormValues?.accounttype}
                                 name="accounttype"
                                 selectinfo="Depositar através de:"
                                 optionA="CPF"

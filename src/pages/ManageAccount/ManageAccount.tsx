@@ -3,10 +3,10 @@ import { useState, ChangeEvent, FormEvent } from 'react'
 import Input from '../../components/Input/Input'
 import Select from '../../components/Select/Select'
 import BalanceInfo from '../../components/Balanceinfo/BalanceInfo'
-import { ManageAccountTypes } from '../../interfaces/ManageAccount'
+import { IManageAccount } from '../../interfaces/ManageAccount'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import getCookie from '../../hooks/getCookie'
+import Cookie from 'js-cookie'
 
 interface ManageAccountValidation {
     name?: string
@@ -18,12 +18,12 @@ interface ManageAccountValidation {
     accounttype?: string
 }
 
-const ManageAccount = () => {
+const ManageAccount: React.FC = () => {
     const navigate = useNavigate()
 
-    const [FormValues, setFormValues] = useState<ManageAccountTypes>({
+    const [FormValues, setFormValues] = useState<IManageAccount>({
         name: '',
-        user_id: getCookie('OrganizzetaCookie_')?.slice(22, 58)!,
+        user_id: Cookie.get('OrganizzetaCookie_')?.slice(22, 58),
         ownercpfnumber: '',
         accountnumber: '',
         securitycode: '',
@@ -31,14 +31,13 @@ const ManageAccount = () => {
         accounttype: 'Conta Poupança',
     })
     const [formErrors, setFormErrors] = useState<ManageAccountValidation>({})
-    const [isSubmit, setIsSubmit] = useState<boolean>(false)
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target
         setFormValues({ ...FormValues, [name]: value })
     }
 
-    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>): void => {
         const { name, value } = e.target
         setFormValues({ ...FormValues, [name]: value })
     }
@@ -50,37 +49,39 @@ const ManageAccount = () => {
     ): ManageAccountValidation => {
         const errors: ManageAccountValidation = {}
         const regex = /^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}/
-        if (!values.name) {
+        if (values.name === undefined) {
             errors.name = 'Inserir o nome do banco é obrigatório!'
         }
-        if (!values.ownercpfnumber) {
+        if (values.ownercpfnumber === undefined) {
             errors.ownercpfnumber = 'Inserir o CPF do titular é obrigatório!'
         } else if (!regex.test(values.ownercpfnumber)) {
             errors.ownercpfnumber = 'Insira um número de CPF válido!'
         }
-        if (!values.accountnumber) {
+        if (values.accountnumber === undefined) {
             errors.accountnumber = 'Inserir o número da conta é obrigatório!'
         } else if (values.accountnumber.length < 16) {
             errors.accountnumber = 'A conta deve ter 16 números'
         }
-        if (!values.securitycode) {
+        if (values.securitycode === undefined) {
             errors.securitycode = 'O código de segurança é obrigatório!'
         } else if (values.securitycode.length < 3) {
             errors.securitycode = 'O código de segurança deve ter 3 dígitos'
         }
-        if (!values.balancevalue) {
+        if (values.balancevalue === undefined) {
             errors.balancevalue = 'Inserir a quantidade de saldo é obrigatório!'
         }
         return errors
     }
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (
+        e: FormEvent<HTMLFormElement>
+    ): Promise<any> => {
         if (Object.keys(validate(FormValues)).length === 0) {
-            setIsSubmit(true)
-            axios
+            await axios
                 .post(API_ACCOUNT_URL, FormValues)
                 .then((response) => {
                     alert('Conta criada com sucesso!')
+                    navigate('/profile')
                 })
                 .catch((response) => {
                     alert('Só é permitido ter 2 contas de banco por usuário.')
@@ -103,7 +104,7 @@ const ManageAccount = () => {
                         Dados cadastrais
                     </h2>
                     <form
-                        onSubmit={handleSubmit}
+                        onSubmit={() => handleSubmit}
                         className="mainsection__secondsectionmngacc__div__form"
                     >
                         <Input

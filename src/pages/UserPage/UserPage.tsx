@@ -2,7 +2,7 @@ import './UserPage.scss'
 import { BsFillPatchCheckFill } from 'react-icons/bs'
 import BalanceInfo from '../../components/Balanceinfo/BalanceInfo'
 
-const UserPage = (): any => {
+const UserPage: React.FC = () => {
     return (
         <main className="mainsection">
             <BalanceInfo />
@@ -72,9 +72,9 @@ const UserPage = (): any => {
                                 </li>
                                 <li className="mainsection__secondsection__instructions__description__list__item">
                                     <b>4. </b> Para cadastrar novas contas de
-                                    banco
-                                    , clique em <b>Gerenciar contas</b>.
-                                    Para modificar suas contas de banco, é necessário deletar e cadastra-lás novamente.
+                                    banco , clique em <b>Gerenciar contas</b>.
+                                    Para modificar suas contas de banco, é
+                                    necessário deletar e cadastra-lás novamente.
                                 </li>
                             </ul>
                         </p>
