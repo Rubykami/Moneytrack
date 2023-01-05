@@ -5,7 +5,6 @@ import Select from '../../components/Select/Select'
 import BalanceInfo from '../../components/Balanceinfo/BalanceInfo'
 import { IManageAccount } from '../../interfaces/ManageAccount'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import Cookie from 'js-cookie'
 
 interface ManageAccountValidation {
@@ -19,7 +18,6 @@ interface ManageAccountValidation {
 }
 
 const ManageAccount: React.FC = () => {
-    const navigate = useNavigate()
 
     const [FormValues, setFormValues] = useState<IManageAccount>({
         name: '',
@@ -78,14 +76,13 @@ const ManageAccount: React.FC = () => {
     const handleSubmit = async (
         e: FormEvent<HTMLFormElement>
         ): Promise<any> => {
-            console.log(Object.keys(validate(FormValues)))
+            e.preventDefault()
         if (Object.keys(validate(FormValues)).length === 0) {
             await axios
                 .post(API_ACCOUNT_URL, FormValues)
                 .then((response) => {
                     alert('Conta criada com sucesso!')
-                    navigate('/profile')
-                    location.reload()
+                    window.location.reload()
                 })
                 .catch((response) => {
                     alert('Só é permitido ter 2 contas de banco por usuário.')
