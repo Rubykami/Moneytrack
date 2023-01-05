@@ -3,7 +3,7 @@ import { ILoginContextProps } from '../interfaces/LoginContextProps'
 import { ILogin } from '../interfaces/Login'
 import axios from 'axios'
 import { ILoginValidate } from '../interfaces/LoginValidate'
-import setCookie from '../hooks/setCookie'
+import useSetCookie from '../hooks/useSetCookie'
 import { ILoginErrors } from '../interfaces/LogginErrors'
 
 export const LoginContext = createContext({})
@@ -43,7 +43,7 @@ export const LoginContextProvider: React.FC<ILoginContextProps> = ({children}) =
             await axios
                 .post('http://localhost:3001/api/auth/sign_in', FormValues)
                 .then((response) => {
-                    setCookie(
+                    useSetCookie(
                         'OrganizzetaCookie_',
                         String(response.headers['access-token']) +
                             String(response.data.data.id) +

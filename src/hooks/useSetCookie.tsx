@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-const setCookie = (cookieName: string, usrInfo: string): void => {
+const useSetCookie = (cookieName: string, usrInfo: string): void => {
     Cookies.set(cookieName, usrInfo, {
         expires: 1,
         secure: true,
@@ -9,4 +9,4 @@ const setCookie = (cookieName: string, usrInfo: string): void => {
     })
 }
 
-export default setCookie
+export default useSetCookie;
