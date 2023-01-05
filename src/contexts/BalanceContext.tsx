@@ -38,8 +38,8 @@ export const BalanceContextProvider: React.FC<IBalanceProps> = ({
     })
     const [visible, setVisibility] = useState<boolean>(false)
 
-    const firstAcountKeys = firstAccount ? Object.keys(firstAccount) : []            // eslint-disable-line
-    const secondAcountKeys = secondAccount ? Object.keys(secondAccount) : []            // eslint-disable-line
+    const firstAccountKeys = firstAccount ? Object.keys(firstAccount) : []            // eslint-disable-line
+    const secondAccountKeys = secondAccount ? Object.keys(secondAccount) : []            // eslint-disable-line
 
     const balanceSection = useRef<HTMLHeadingElement>(null)
 
@@ -74,15 +74,18 @@ export const BalanceContextProvider: React.FC<IBalanceProps> = ({
     }
 
     const getCurrentUserInfo = async (): Promise<any> => {
-        await axios.get(CURRENT_USER_INFO).then((CURRENT_USER) => {
-            setFirstAccount(CURRENT_USER.data.accounts[0])
-            setSecondAccount(CURRENT_USER.data.accounts[1])
+        await axios.get(CURRENT_USER_INFO).then((response) => {
+            const CURRENT_USER = response.data.accounts.sort(((a: any, b: any) => a.id - b.id))
+            console.log(CURRENT_USER)
+            setFirstAccount(CURRENT_USER[0])
+            setSecondAccount(CURRENT_USER[1])
             setBalanceValue(CURRENT_USER.data.balancevalue)
         })
     }
 
-    useEffect(() => {
-        void getCurrentUserInfo()
+
+    useEffect(() => { 
+        getCurrentUserInfo() // eslint-disable-line
     }, []) // eslint-disable-line
 
     return (
@@ -110,8 +113,8 @@ export const BalanceContextProvider: React.FC<IBalanceProps> = ({
                 balance,
                 CURRENT_USER_INFO,
                 userID,
-                firstAcountKeys, 
-                secondAcountKeys
+                firstAccountKeys, 
+                secondAccountKeys
             }}
         >
             {children}

@@ -49,39 +49,43 @@ const ManageAccount: React.FC = () => {
     ): ManageAccountValidation => {
         const errors: ManageAccountValidation = {}
         const regex = /^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}/
-        if (values.name === undefined) {
+        if (!values.name) {    // eslint-disable-line
             errors.name = 'Inserir o nome do banco é obrigatório!'
         }
-        if (values.ownercpfnumber === undefined) {
+        if (!values.ownercpfnumber) {    // eslint-disable-line
             errors.ownercpfnumber = 'Inserir o CPF do titular é obrigatório!'
-        } else if (!regex.test(values.ownercpfnumber)) {
+        } if (!regex.test(values.ownercpfnumber ?? '')) {
             errors.ownercpfnumber = 'Insira um número de CPF válido!'
         }
-        if (values.accountnumber === undefined) {
+        if (!values.accountnumber) {       // eslint-disable-line
             errors.accountnumber = 'Inserir o número da conta é obrigatório!'
-        } else if (values.accountnumber.length < 16) {
+        } if ((values.accountnumber ?? '').length < 16) {
             errors.accountnumber = 'A conta deve ter 16 números'
         }
-        if (values.securitycode === undefined) {
+        if (!values.securitycode) {       // eslint-disable-line
             errors.securitycode = 'O código de segurança é obrigatório!'
-        } else if (values.securitycode.length < 3) {
+        } if ((values.securitycode ?? '').length < 3) {
             errors.securitycode = 'O código de segurança deve ter 3 dígitos'
         }
-        if (values.balancevalue === undefined) {
+        if (!values.balancevalue) {          // eslint-disable-line
+
             errors.balancevalue = 'Inserir a quantidade de saldo é obrigatório!'
         }
         return errors
     }
 
+    
     const handleSubmit = async (
         e: FormEvent<HTMLFormElement>
-    ): Promise<any> => {
+        ): Promise<any> => {
+            console.log(Object.keys(validate(FormValues)))
         if (Object.keys(validate(FormValues)).length === 0) {
             await axios
                 .post(API_ACCOUNT_URL, FormValues)
                 .then((response) => {
                     alert('Conta criada com sucesso!')
                     navigate('/profile')
+                    location.reload()
                 })
                 .catch((response) => {
                     alert('Só é permitido ter 2 contas de banco por usuário.')
@@ -89,7 +93,6 @@ const ManageAccount: React.FC = () => {
         } else {
             setFormErrors(validate(FormValues))
         }
-        e.preventDefault()
     }
 
     return (
@@ -103,8 +106,8 @@ const ManageAccount: React.FC = () => {
                     <h2 className="mainsection__secondsectionmngacc__div__subtitle">
                         Dados cadastrais
                     </h2>
-                    <form
-                        onSubmit={() => handleSubmit}
+                    <form 
+                        onSubmit={handleSubmit}      // eslint-disable-line
                         className="mainsection__secondsectionmngacc__div__form"
                     >
                         <Input

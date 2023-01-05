@@ -34,14 +34,14 @@ const Deposit: React.FC = () => {
                         <Input
                             name="depositbalancevalue"
                             type="number"
-                            OnChange={() => handleInputChange}
+                            OnChange={handleInputChange}  
                             placeholder="Insira a quantidade a ser depositada"
                             text="Saldo"
                             value={FormValues?.depositbalancevalue}
                         />
                         <div className="mainsection__secondsectiondeposit__form__selectdiv">
                             <Select
-                                onChange={() => handleSelectChange}
+                                onChange={handleSelectChange}
                                 value={FormValues?.accounttype}
                                 name="accounttype"
                                 selectinfo="Depositar através de:"

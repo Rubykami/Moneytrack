@@ -3,7 +3,7 @@ import { IDeposit } from "./Deposit"
 
 export interface IDepositContextProps {
     FormSubmit?: any,
-    handleInputChange?: ChangeEventHandler<HTMLSelectElement>,
-    handleSelectChange?: ChangeEventHandler<HTMLSelectElement>,
+    handleInputChange?: any,
+    handleSelectChange?: any,
     FormValues?: IDeposit
 }
