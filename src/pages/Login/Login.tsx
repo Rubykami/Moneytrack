@@ -9,7 +9,7 @@ const Login: React.FC = () => {
     const { handleInputChange, handleSubmit, formErrors, FormValues}: any = useContext(LoginContext)
 
     return (
-        <form className="loginform" onSubmit={() => handleSubmit}>
+        <form className="loginform" onSubmit={handleSubmit}>
             <fieldset className="loginform__fieldset">
                 <h1 className="loginform__fieldset__title">Login</h1>
                 <Input

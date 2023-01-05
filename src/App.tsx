@@ -13,8 +13,8 @@ import GlobalContextProvider from './contexts/GlobalContext'
 function App(): any {
     return (
         <>
-            <GlobalContextProvider>
-                <Router>
+            <Router>
+                <GlobalContextProvider>
                     <Header />
                     <Routes>
                         <Route path="/" element={<Home />} />
@@ -31,8 +31,8 @@ function App(): any {
                         />
                         <Route path="/profile/deposit" element={<Deposit />} />
                     </Routes>
-                </Router>
-            </GlobalContextProvider>
+                </GlobalContextProvider>
+            </Router>
         </>
     )
 }
