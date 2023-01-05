@@ -76,10 +76,9 @@ export const BalanceContextProvider: React.FC<IBalanceProps> = ({
     const getCurrentUserInfo = async (): Promise<any> => {
         await axios.get(CURRENT_USER_INFO).then((response) => {
             const CURRENT_USER = response.data.accounts.sort(((a: any, b: any) => a.id - b.id))
-            console.log(CURRENT_USER)
             setFirstAccount(CURRENT_USER[0])
             setSecondAccount(CURRENT_USER[1])
-            setBalanceValue(CURRENT_USER.data.balancevalue)
+            setBalanceValue(response.data.balancevalue)
         })
     }
 

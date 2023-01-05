@@ -35,7 +35,6 @@ export const DepositContextProvider: React.FC<IDepositProps> = ({
     }
 
     const FormSubmit = async (e: FormEvent<HTMLFormElement>): Promise<any> => {
-        console.log(CURRENT_USER_INFO)
         await axios.patch(String(CURRENT_USER_INFO), {
             balancevalue: String(
                 Number(balanceValue) + Number(FormValues.depositbalancevalue)
