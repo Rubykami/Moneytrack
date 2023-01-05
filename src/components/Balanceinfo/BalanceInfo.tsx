@@ -15,7 +15,7 @@ const BalanceInfo: React.FC<any> = () => {
         balance,
         eyeClass,
         eyeIcon,
-        toggleBalanceVisiblity,
+        toggleBalanceVisiblity, firstAccountKeys, secondAccountKeys
     }: any = useContext(BalanceContext)
 
     return (
@@ -59,10 +59,10 @@ const BalanceInfo: React.FC<any> = () => {
                         <h3 className="mainsection__bankdatasection__title">
                             Minhas contas
                         </h3>
-                        {Object.keys(firstAccount).length !== 0 ||
-                        Object.keys(secondAccount).length !== 0 ? (
+                        {firstAccountKeys ||         // eslint-disable-line
+                        secondAccountKeys ? (           // eslint-disable-line
                             <>
-                                {Object.keys(secondAccount).length !== 0 ? (
+                                {secondAccountKeys ? (           //eslint-disable-line
                                     <>
                                         <BankAccount
                                             bankName={Object(firstAccount).name}

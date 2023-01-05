@@ -38,6 +38,9 @@ export const BalanceContextProvider: React.FC<IBalanceProps> = ({
     })
     const [visible, setVisibility] = useState<boolean>(false)
 
+    const firstAcountKeys = firstAccount ? Object.keys(firstAccount) : []            // eslint-disable-line
+    const secondAcountKeys = secondAccount ? Object.keys(secondAccount) : []            // eslint-disable-line
+
     const balanceSection = useRef<HTMLHeadingElement>(null)
 
     const userID = Cookie.get('OrganizzetaCookie_')?.slice(22, 58)
@@ -107,6 +110,8 @@ export const BalanceContextProvider: React.FC<IBalanceProps> = ({
                 balance,
                 CURRENT_USER_INFO,
                 userID,
+                firstAcountKeys, 
+                secondAcountKeys
             }}
         >
             {children}

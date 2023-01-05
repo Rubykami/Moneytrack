@@ -23,8 +23,8 @@ const Transfers: React.FC = () => {
     const [firstBankName, setFirstBankName] = useState('')
     const [secondBankName, setSecondBankName] = useState('')
 
-    const firstAccountID = firstAccount.id
-    const secondAccountID = secondAccount.id
+    const firstAccountID = firstAccount ? firstAccount.id : []  // eslint-disable-line
+    const secondAccountID = secondAccount ? secondAccount.id : []  // eslint-disable-line
 
     const CURRENT_USER_FIRST_ACCOUNT =
         `${String(process.env.REACT_APP_USERS_ACCOUNT_INFO)}`.concat(
