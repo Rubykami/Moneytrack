@@ -1,7 +1,6 @@
 import './BalanceInfo.scss'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { BsFillPlusCircleFill } from 'react-icons/bs'
 import BankAccount from '../BankAccount/BankAccount'
 import { BalanceContext } from '../../contexts/BalanceContext'
 
@@ -102,9 +101,7 @@ const BalanceInfo: React.FC<any> = () => {
                                 )}
                             </>
                         ) : (
-                            <Link to="/profile/manageaccount">
-                                <BsFillPlusCircleFill className="mainsection__bankdatasection__plus" />
-                            </Link>
+                            []
                         )}
                     </section>
                     <Link to="/profile/manageaccount">

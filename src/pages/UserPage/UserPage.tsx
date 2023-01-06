@@ -59,7 +59,7 @@ const UserPage: React.FC = () => {
                             <ul className="mainsection__secondsection__instructions__description__list">
                                 <li className="mainsection__secondsection__instructions__description__list__item">
                                     <b>1. </b> Primeiramente, você deve clicar
-                                    no botão de <b>+</b> logo abaixo de
+                                    no botão de <b>Gerenciar contas</b> logo abaixo de
                                     <b> Minhas contas</b> do lado esquerdo da
                                     sua tela para escolher quais bancos você irá
                                     utilizar e o quanto de dinheiro cada um tem.
