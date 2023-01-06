@@ -77,15 +77,15 @@ const Transfers: React.FC = () => {
             await axios.patch(CURRENT_USER_INFO, {
                 balancevalue: String(
                     Number(balanceValue) - Number(FormValues.transfersvalue)
-                ),
-            })
-            await axios.patch(CURRENT_USER_FIRST_ACCOUNT, {
-                // eslint-disable-line
-                balancevalue: String(
-                    Number(firstAccount.balancevalue) +
+                    ),
+                })
+                await axios.patch(CURRENT_USER_FIRST_ACCOUNT, {
+                    // eslint-disable-line
+                    balancevalue: String(
+                        Number(firstAccount.balancevalue) +
                         Number(FormValues.transfersvalue)
-                ),
-            })
+                        ),
+                    })
             setTimeout(() => {
                 window.location.reload();
             }, 1000)

@@ -1,11 +1,12 @@
 import './ManageAccount.scss'
-import { useState, ChangeEvent, FormEvent } from 'react'
+import { useState, ChangeEvent, FormEvent, useContext } from 'react'
 import Input from '../../components/Input/Input'
 import Select from '../../components/Select/Select'
 import BalanceInfo from '../../components/Balanceinfo/BalanceInfo'
 import { IManageAccount } from '../../interfaces/ManageAccount'
 import axios from 'axios'
 import Cookie from 'js-cookie'
+import { BalanceContext } from '../../contexts/BalanceContext'
 
 interface ManageAccountValidation {
     name?: string
@@ -18,6 +19,8 @@ interface ManageAccountValidation {
 }
 
 const ManageAccount: React.FC = () => {
+
+    const { CURRENT_USER_INFO }: any = useContext(BalanceContext)
 
     const [FormValues, setFormValues] = useState<IManageAccount>({
         name: '',
@@ -71,22 +74,23 @@ const ManageAccount: React.FC = () => {
         }
         return errors
     }
-
     
     const handleSubmit = async (
         e: FormEvent<HTMLFormElement>
         ): Promise<any> => {
             e.preventDefault()
         if (Object.keys(validate(FormValues)).length === 0) {
-            await axios
-                .post(API_ACCOUNT_URL, FormValues)
-                .then((response) => {
-                    alert('Conta criada com sucesso!')
-                    window.location.reload()
-                })
-                .catch((response) => {
-                    alert('Só é permitido ter 2 contas de banco por usuário.')
-                })
+            const CURRENT_USER = axios.get(CURRENT_USER_INFO)
+            if ((await CURRENT_USER).data.accounts.length < 2) {
+                await axios
+                    .post(API_ACCOUNT_URL, FormValues)
+                    .then(() => {
+                        alert('Conta criada com sucesso!')
+                        window.location.reload()
+                    })
+            } else {
+                alert('Só é permitido 2 contas ativas por usuário.')
+            }
         } else {
             setFormErrors(validate(FormValues))
         }
