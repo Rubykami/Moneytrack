@@ -1,8 +1,15 @@
 import './UserPage.scss'
 import { BsFillPatchCheckFill } from 'react-icons/bs'
 import BalanceInfo from '../../components/Balanceinfo/BalanceInfo'
+import { useMemo } from 'react'
+
 
 const UserPage: React.FC = () => {
+
+    useMemo(() => {
+        window.location.reload // eslint-disable-line
+    }, [])
+
     return (
         <main className="mainsection">
             <BalanceInfo />

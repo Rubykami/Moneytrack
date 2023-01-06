@@ -13,6 +13,7 @@ export const LoginContextProvider: React.FC<ILoginContextProps> = ({children}) =
 
     const navigate = useNavigate()
 
+
     const [FormValues, setFormValues] = useState<ILogin>({
         email: '',
         password: '',
@@ -48,6 +49,7 @@ export const LoginContextProvider: React.FC<ILoginContextProps> = ({children}) =
                 .post('http://localhost:3001/api/auth/sign_in', FormValues)
                 .then((response) => {
                     navigate('/profile')
+                    window.location.reload()
                     useSetCookie(
                         'OrganizzetaCookie_',
                         String(response.headers['access-token']) +

@@ -10,11 +10,16 @@ import { ISignupProps } from '../interfaces/SignupContextProps'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { ISignup } from '../interfaces/Signup'
 import { ISignupValidate } from '../interfaces/SignupValidate'
+import axios from 'axios'
 import { ISignupErrors } from '../interfaces/SignupErrors'
+import useSetCookie from '../hooks/useSetCookie'
 
 export const SignupContext = createContext({})
 
 export const SignupContextProvider: React.FC<ISignupProps> = ({ children }) => {
+
+
+
     const TEXT = 'text'
     const PASSWORD = 'password'
 
@@ -34,7 +39,7 @@ export const SignupContextProvider: React.FC<ISignupProps> = ({ children }) => {
         name: '',
         email: '',
         password: '',
-        confirmationPassword: '',
+        password_confirmation: '',
     }
 
     const [upperEye, setUpperEye] = useState<JSX.Element>(<FaEyeSlash />)
@@ -75,9 +80,24 @@ export const SignupContextProvider: React.FC<ISignupProps> = ({ children }) => {
         const { name, value } = e.target
         setFormValues({ ...formValues, [name]: value })
     }
-    const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault()
-        setFormErrors(validate(formValues))
+        if (Object.keys(validate(formValues)).length === 0) {
+            await axios
+                .post('http://localhost:3001/api/auth', formValues)
+                .then((response) => {
+                    alert('Conta criada com sucesso!. Por favor, verifique seu email.')
+                    useSetCookie(
+                        'OrganizzetaCookie_',
+                        String(response.headers['access-token']) +
+                            String(response.data.data['id']) +      // eslint-disable-line
+                            String(response.headers['client'])      // eslint-disable-line
+                    )
+                }).catch((response) => {
+                    console.log(response)})
+        } else {
+            setFormErrors(validate(formValues))
+        }
     }
 
     const passwordInputRef = useRef<HTMLInputElement>(null)

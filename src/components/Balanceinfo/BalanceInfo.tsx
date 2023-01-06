@@ -15,8 +15,9 @@ const BalanceInfo: React.FC<any> = () => {
         balance,
         eyeClass,
         eyeIcon,
-        toggleBalanceVisiblity, firstAccountKeys, secondAccountKeys
+        toggleBalanceVisiblity, firstAccountKeys, secondAccountKeys, user 
     }: any = useContext(BalanceContext)
+
 
     return (
         <>
@@ -24,7 +25,7 @@ const BalanceInfo: React.FC<any> = () => {
                 <section className="mainsection__personaldatasection">
                     <section className="mainsection__personaldatasection__div">
                         <h1 className="mainsection__personaldatasection__div__title">
-                            Bom dia Bruno!
+                            Olá {user}!
                         </h1>
                         <div className="mainsection__personaldatasection__div__notification">
                             {notificationIcon}
