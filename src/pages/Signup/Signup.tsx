@@ -63,16 +63,16 @@ const Signup: React.FC = () => {
                     {formErrors.password}
                 </p>
                 <Input
-                    name="confirmationPassword"
+                    name="password_confirmation"
                     ref={confirmationPasswordInputRef}
                     placeholder="Confirme sua senha"
                     type="password"
                     text="Confirmar senha:"
-                    value={formValues.confirmationPassword}
+                    value={formValues.password_confirmation}
                     OnChange={handleInputChange}
                 />
                 <p className="form__fieldset__errors__confirmationPassword">
-                    {formErrors.confirmationPassword}
+                    {formErrors.password_confirmation}
                 </p>
                 <button className="form__fieldset__button">
                     Começar a usar

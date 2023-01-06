@@ -63,14 +63,14 @@ export const SignupContextProvider: React.FC<ISignupProps> = ({ children }) => {
         } else if (values.password.length < 8) {
             errors.password = 'A senha deve ter pelo menos 8 carácteres'
         }
-        if (values.confirmationPassword === undefined) {
-            errors.confirmationPassword =
+        if (values.password_confirmation === undefined) {
+            errors.password_confirmation =
                 'Inserir a confirmação de senha é obrigatório!'
-        } else if (values.confirmationPassword.length < 8) {
-            errors.confirmationPassword =
+        } else if (values.password_confirmation.length < 8) {
+            errors.password_confirmation =
                 'A confirmação de senha deve ter pelo menos 8 carácteres'
         }
-        if (values.password !== values.confirmationPassword) {
+        if (values.password !== values.password_confirmation) {
             errors.password = 'As senhas devem ser iguais'
         }
         return errors
