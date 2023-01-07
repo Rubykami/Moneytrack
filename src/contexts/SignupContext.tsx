@@ -50,20 +50,20 @@ export const SignupContextProvider: React.FC<ISignupProps> = ({ children }) => {
     const validate = (values: ISignupValidate): ISignupValidate => {
         const errors: ISignupValidate = {}
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i
-        if (values.name === undefined) {
+        if (!values.name) {    // eslint-disable-line
             errors.name = 'Inserir o nome é obrigatório!'
         }
-        if (values.email === undefined) {
+        if (!values.email) {                 // eslint-disable-line
             errors.email = 'Inserir o email é obrigatório!'
         } else if (!regex.test(values.email)) {
             errors.email = 'Este não é um email válido!'
         }
-        if (values.password === undefined) {
+        if (!values.password) {  // eslint-disable-line
             errors.password = 'Inserir uma senha é obrigatório!'
         } else if (values.password.length < 8) {
             errors.password = 'A senha deve ter pelo menos 8 carácteres'
         }
-        if (values.password_confirmation === undefined) {
+        if (!values.password_confirmation) {   // eslint-disable-line
             errors.password_confirmation =
                 'Inserir a confirmação de senha é obrigatório!'
         } else if (values.password_confirmation.length < 8) {
