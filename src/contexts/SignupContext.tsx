@@ -89,7 +89,7 @@ export const SignupContextProvider: React.FC<ISignupProps> = ({ children }) => {
                     alert('Conta criada com sucesso!. Por favor, verifique seu email.')
                     useSetCookie(
                         'OrganizzetaCookie_',
-                        String(response.headers['access-token']) +
+                        String(response.headers['access-token']) +   // eslint-disable-line
                             String(response.data.data['id']) +      // eslint-disable-line
                             String(response.headers['client'])      // eslint-disable-line
                     )
