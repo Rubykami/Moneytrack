@@ -17,6 +17,6 @@ Após fazer o seu cadastro, você poderá depositar dinheiro na sua carteira Org
 
 </hr>
 
-1. Primeiramente, você deve instalar a biblioteca usando o comando 'yarn install'.
+1. Primeiramente, você deve instalar as bibliotecas usando o comando 'yarn install'.
 2. Agora você pode iniciar o servidor, o comando é 'yarn start'.
 
