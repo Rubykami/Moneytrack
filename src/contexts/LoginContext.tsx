@@ -53,7 +53,7 @@ export const LoginContextProvider: React.FC<ILoginContextProps> = ({children}) =
                     useSetCookie(
                         'OrganizzetaCookie_',
                         String(response.headers['access-token']) +
-                            String(response.data.data['id]) +
+                            String(response.data.data['id']) +
                             String(response.headers['client'])
                     )
                 })
