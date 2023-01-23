@@ -11,11 +11,13 @@ import axios from 'axios'
 import { IBalanceProps } from '../interfaces/BalanceProps'
 import { IAccountProps } from '../interfaces/AccountProps'
 import Cookie from 'js-cookie'
+import { useNavigate } from 'react-router-dom'
+import useRemoveCookie from '../hooks/useRemoveCookie'
 
 export const BalanceContext = createContext({})
 
 export const BalanceContextProvider: React.FC<IBalanceProps> = ({
-    children,
+    children
 }) => {
     const [balanceValue, setBalanceValue] = useState<string>('0')
     const [firstAccount, setFirstAccount] = useState<IAccountProps>({
@@ -83,6 +85,14 @@ export const BalanceContextProvider: React.FC<IBalanceProps> = ({
         })
     }
 
+    const navigate = useNavigate()
+
+    const Logout = (): any => {
+        useRemoveCookie('OrganizzetaCookie_')
+        navigate('/login')
+        window.location.reload()
+    }
+
 
     useEffect(() => { 
         getCurrentUserInfo() // eslint-disable-line
@@ -117,7 +127,7 @@ export const BalanceContextProvider: React.FC<IBalanceProps> = ({
                 userID,
                 firstAccountKeys, 
                 secondAccountKeys,
-                user, setUser
+                user, setUser, navigate, Logout
             }}
         >
             {children}

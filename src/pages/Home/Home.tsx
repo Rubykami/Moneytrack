@@ -2,18 +2,15 @@ import './Home.scss'
 import './Footer.scss'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { MdPhonelink, MdLockOutline } from 'react-icons/md'
-import { useNavigate } from 'react-router-dom'
 import { CgFacebook } from 'react-icons/cg'
 import { BsTwitter, BsLinkedin } from 'react-icons/bs'
 import { SiInstagram } from 'react-icons/si'
+import { GlobalContext } from '../../contexts/GlobalContext'
+import { useContext } from 'react'
 
 const Home: React.FC = () => {
-    const Navigate = useNavigate()
 
-    const RedirectToSignupPage = (): void => {
-        Navigate('/signup')
-    }
-
+    const { RedirectToSignupPage }: any = useContext(GlobalContext)
     return (
         <>
             <main className="main">

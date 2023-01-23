@@ -1,19 +1,12 @@
 import './Header.scss'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { BalanceContext } from '../../contexts/BalanceContext'
-import useRemoveCookie from '../../hooks/useRemoveCookie'
+
 
 const Header: React.FC = () => {
-    const { user }: any = useContext(BalanceContext)
+    const { user, Logout }: any = useContext(BalanceContext)
 
-    const navigate = useNavigate()
-
-    const Logout = (): any => {
-        useRemoveCookie('OrganizzetaCookie_')
-        navigate('/login')
-        window.location.reload()
-    }
 
     return (
         <nav className="navbar">
